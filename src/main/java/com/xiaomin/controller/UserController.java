@@ -56,4 +56,28 @@ public class UserController {
     public String toViewPage(){
         return "X-Admin/member-view";
     }
+    @RequestMapping("/echarts1")
+    public String toEcharts1(){
+        return "X-Admin/echarts1";
+    }
+    @RequestMapping("/echarts2")
+    public String toEcharts2(){
+        return "X-Admin/echarts2";
+    }
+    @RequestMapping("/echarts3")
+    public String toEcharts3(){
+        return "X-Admin/echarts3";
+    }
+    @RequestMapping("/echarts4")
+    public String toEcharts4(){
+        return "X-Admin/echarts4";
+    }
+    @RequestMapping("/echarts5")
+    public String toEcharts5(){
+        return "X-Admin/echarts5";
+    }
+    @RequestMapping("/echarts6")
+    public String toEcharts6(){
+        return "X-Admin/echarts6";
+    }
 }
