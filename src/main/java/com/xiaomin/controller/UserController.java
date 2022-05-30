@@ -31,11 +31,11 @@ public class UserController {
     }
 
     @RequestMapping("/user/register")
-    public String register(){
+    public String ToRegisterPage(){
         return "registered";
     }
     @RequestMapping("/register")
-    public String register(User user){
+    public String ToRegister(User user){
         System.out.println("===>"+user.toString());
         userDao.addUser(user);
         return "index";
@@ -57,27 +57,31 @@ public class UserController {
         return "X-Admin/member-view";
     }
     @RequestMapping("/echarts1")
-    public String toEcharts1(){
+    public String toEcharts1Page(){
         return "X-Admin/echarts1";
     }
     @RequestMapping("/echarts2")
-    public String toEcharts2(){
+    public String toEcharts2Page(){
         return "X-Admin/echarts2";
     }
     @RequestMapping("/echarts3")
-    public String toEcharts3(){
+    public String toEcharts3Page(){
         return "X-Admin/echarts3";
     }
     @RequestMapping("/echarts4")
-    public String toEcharts4(){
+    public String toEcharts4Page(){
         return "X-Admin/echarts4";
     }
     @RequestMapping("/echarts5")
-    public String toEcharts5(){
+    public String toEcharts5Page(){
         return "X-Admin/echarts5";
     }
     @RequestMapping("/echarts6")
-    public String toEcharts6(){
+    public String toEcharts6Page(){
         return "X-Admin/echarts6";
+    }
+    @RequestMapping("/demo")
+    public String toDemoPage(){
+        return "X-Admin/demo";
     }
 }
