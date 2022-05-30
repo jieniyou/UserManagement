@@ -47,10 +47,6 @@ public class UserController {
         userDao.addUser(user);
         return "index";
     }
-    @RequestMapping("/del")
-    public String toDelPage(){
-        return "X-Admin/member-del";
-    }
     @RequestMapping("/level")
     public String toLevelPage(){
         return "X-Admin/member-level";
@@ -58,10 +54,6 @@ public class UserController {
     @RequestMapping("/kiss")
     public String toKissPage(){
         return "X-Admin/member-kiss";
-    }
-    @RequestMapping("/view")
-    public String toViewPage(){
-        return "X-Admin/member-view";
     }
     @RequestMapping("/echarts1")
     public String toEcharts1Page(){

@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
-	<title>后台登录-X-admin1.1</title>
+	<title></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon" />
     <link rel="stylesheet" th:href="@{/X-Admin/css/font.css}">
@@ -58,7 +58,7 @@
                         <span class="x-red">*</span>身份
                     </label>
                     <div class="layui-input-inline">
-                        <input readonly type="password" id="L_identity" name="pass" required="" lay-verify="pass"
+                        <input readonly type="text" id="L_identity" name="pass" required="" lay-verify="pass"
                         autocomplete="off" class="layui-input">
                     </div>
                 </div>
@@ -70,5 +70,29 @@
         <!-- 右侧主体结束 -->
     </div>
     <!-- 中部结束 -->
+<script>
+    function child(obj){
+        let userName=document.getElementById("L_username");
+        userName.value=obj[0];
+        let email=document.getElementById("L_email");
+        email.value=obj[1];
+        let gender=document.getElementById("L_gender");
+        if (obj[2]=="0"){
+            let g="女";
+            gender.value=g;
+        }else {
+            let g="男";
+            gender.value=g;
+        }
+        let identity=document.getElementById("L_identity");
+        if (obj[3]=="1"){
+            let i="超级管理员";
+            identity.value=i;
+        }else {
+            let i="普通用户";
+            identity.value=i;
+        }
+    }
+</script>
 </body>
 </html>
