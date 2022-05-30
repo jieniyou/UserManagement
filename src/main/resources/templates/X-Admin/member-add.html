@@ -21,56 +21,105 @@
         <div class="page-content">
           <div class="content">
             <!-- 右侧内容框架，更改从这里开始 -->
-            <form class="layui-form">
+              <iframe style="display: none" id="myIframe" name="myIframe"></iframe>
+            <form class="layui-form" th:action="@{/user/add}" target="myIframe">
+
+                <div class="layui-form-item">
+                    <label for="L_username" class="layui-form-label">
+                        <span class="x-red">*</span>用户名
+                    </label>
+                    <div class="layui-input-inline">
+                        <input type="text" id="L_username" name="userName" required="" lay-verify="userName"
+                        autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label for="L_pass" class="layui-form-label">
+                        <span class="x-red">*</span>密码
+                    </label>
+                    <div class="layui-input-inline">
+                        <input type="password" id="L_pass" name="password" required=""
+                        autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label for="L_gender" class="layui-form-label">
+                        <span class="x-red">*</span>性别
+                    </label>
+                    <div class="layui-input-inline">
+                        <select id="L_gender" name="gender" required="" lay-verify="gender"
+                                autocomplete="off" class="layui-input">
+                            <option value="1">男</option>
+                            <option value="0">女</option>
+                        </select>
+                    </div>
+                </div>
+
                 <div class="layui-form-item">
                     <label for="L_email" class="layui-form-label">
                         <span class="x-red">*</span>邮箱
                     </label>
                     <div class="layui-input-inline">
                         <input type="text" id="L_email" name="email" required="" lay-verify="email"
-                        autocomplete="off" class="layui-input">
-                    </div>
-                    <div class="layui-form-mid layui-word-aux">
-                        <span class="x-red">*</span>将会成为您唯一的登入名
+                               autocomplete="off" class="layui-input">
                     </div>
                 </div>
+
                 <div class="layui-form-item">
-                    <label for="L_username" class="layui-form-label">
-                        <span class="x-red">*</span>昵称
+                    <label for="L_birth" class="layui-form-label">
+                        <span class="x-red">*</span>生日
                     </label>
                     <div class="layui-input-inline">
-                        <input type="text" id="L_username" name="username" required="" lay-verify="nikename"
-                        autocomplete="off" class="layui-input">
+                        <input type="datetime-local" id="L_birth" name="birth" required="" lay-verify="birth"
+                               autocomplete="off" class="layui-input">
                     </div>
                 </div>
+
                 <div class="layui-form-item">
-                    <label for="L_pass" class="layui-form-label">
-                        <span class="x-red">*</span>密码
+                    <label for="L_identity" class="layui-form-label">
+                        <span class="x-red">*</span>身份
                     </label>
                     <div class="layui-input-inline">
-                        <input type="password" id="L_pass" name="pass" required="" lay-verify="pass"
-                        autocomplete="off" class="layui-input">
-                    </div>
-                    <div class="layui-form-mid layui-word-aux">
-                        6到16个字符
+                        <select id="L_identity" name="identity" required="" lay-verify="identityT"
+                                autocomplete="off" class="layui-input">
+                            <option value="1">超级管理员</option>
+                            <option value="0">普通用户</option>
+                        </select>
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label for="L_repass" class="layui-form-label">
-                        <span class="x-red">*</span>确认密码
+                    <label for="L_status" class="layui-form-label">
+                        <span class="x-red">*</span>状态
                     </label>
                     <div class="layui-input-inline">
-                        <input type="password" id="L_repass" name="repass" required="" lay-verify="repass"
-                        autocomplete="off" class="layui-input">
+                        <select id="L_status" name="status" required="" lay-verify="status"
+                                autocomplete="off" class="layui-input">
+                            <option value="1">启用</option>
+                            <option value="0">停用</option>
+                        </select>
                     </div>
                 </div>
+
+                <!--<div class="layui-form-item">-->
+                <!--    <label for="L_repass" class="layui-form-label">-->
+                <!--        &lt;!&ndash;<span class="x-red">*</span>确认密码&ndash;&gt;-->
+                <!--    </label>-->
+                <!--    <div class="layui-input-inline">-->
+                <!--        <input type="hidden" id="L_repass" name="repass" required="" lay-verify="repass"-->
+                <!--        autocomplete="off" class="layui-input">-->
+                <!--    </div>-->
+                <!--</div>-->
+
                 <div class="layui-form-item">
-                    <label for="L_repass" class="layui-form-label">
+                    <label for="L_status" class="layui-form-label">
                     </label>
-                    <button  class="layui-btn" lay-filter="add" lay-submit="">
+                    <button type="submit"  class="layui-btn" lay-filter="add" lay-submit="">
                         增加
                     </button>
                 </div>
+
             </form>
             <!-- 右侧内容框架，更改从这里结束 -->
           </div>

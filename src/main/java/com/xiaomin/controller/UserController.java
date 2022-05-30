@@ -47,6 +47,16 @@ public class UserController {
         userDao.addUser(user);
         return "index";
     }
+
+    @RequestMapping("/user/add")
+    public String toAdd(User user){
+        userDao.addUser(user);
+        return "main";
+    }
+
+
+
+
     @RequestMapping("/level")
     public String toLevelPage(){
         return "X-Admin/member-level";
