@@ -1,4 +1,4 @@
-package com.xiaomin;
+package com.xiaomin.shixun;
 
 import java.util.Arrays;
 
