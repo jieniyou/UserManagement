@@ -10,7 +10,7 @@ import java.util.Arrays;
  */
 public class chengfabiao {
     public static void main(String[] args) {
-        multiTable(9);
+        //multiTable(9);
     }
 
     public static void multiTable(int n){
@@ -25,5 +25,9 @@ public class chengfabiao {
             System.out.println();
         }
         System.out.println(Arrays.toString(ret));
+    }
+
+    public static void linkedList(){
+
     }
 }
