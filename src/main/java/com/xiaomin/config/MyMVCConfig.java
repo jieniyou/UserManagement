@@ -22,6 +22,11 @@ public class MyMVCConfig implements WebMvcConfigurer {
         registry.addViewController("/main.html").setViewName("main");
         registry.addViewController("/main").setViewName("main");
 
+        registry.addViewController("/member_add").setViewName("X-Admin/member-add");
+        registry.addViewController("/member_show").setViewName("X-Admin/member-show");
+
+
+
     }
 
     @Override
