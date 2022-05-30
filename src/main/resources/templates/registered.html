@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link th:href="@{/css/bootstrap.min.css}" type="text/css" rel="stylesheet">
+	<link th:href="@{/css/font-awesome.min.css}" type="text/javascript" rel="stylesheet">
+	<link th:href="@{/css/bootsnav.css}" type="text/css" rel="stylesheet">
+	<link th:href="@{/css/normalize.css}" type="text/css" rel="stylesheet">
+	<link th:href="@{/css/css.css}" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" th:href="@{https://www.layuicdn.com/layui/css/layui.css}" />
+	<style type="text/css">
+		input::-webkit-outer-spin-button,
+		input::-webkit-inner-spin-button {
+			-webkit-appearance: none;
+		}
+		input[type="number"] {
+			-moz-appearance: textfield;
+		}
+	</style>
+
+	<script th:src="@{/js/jquery-1.11.0.min.js}" type="text/javascript"></script>
+	<script th:src="@{/js/jquery.step.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}" type="text/javascript"></script>
+	<script th:src="@{/js/bootsnav.js}" type="text/javascript"></script>
+	<script th:src="@{https://www.layuicdn.com/layui/layui.js}"></script>
+
+	<script th:src="@{/js/jquery.js}" type="text/javascript"></script>
+	<!--[if IE]><script th:src="@{/js/html5.js}"></script><![endif]-->
+	<title>注册</title>
+</head>
+
+<body class="logobg_style">
+<div id="large-header" class="large-header login-page">
+	<canvas id="demo-canvas" width="1590" height="711"></canvas>
+	<div class="Retrieve_style">
+		<div class="Retrieve-content step-body" id="myStep">
+			<h1 class="title_name">用户注册</h1>
+
+			<form th:action="@{/register}" role="form" class="login_padding">
+
+				<div class="form-group clearfix">
+					<div class="input-group">
+						<input type="number" class="form-controlR" name="userName" id="username" placeholder="用户名" required="required" autofocus="autofocus" autocomplete="off">
+					</div>
+				</div>
+
+				<div class="form-group clearfix">
+					<div class="input-group">
+						<input type="password" class="form-controlR" name="password" id="password" placeholder="密码" required="required" autofocus="autofocus" autocomplete="off">
+					</div>
+				</div>
+
+				<div class="form-group clearfix">
+					<div class="input-group">
+						<select class="form-controlR" name="gender" id="gender" autofocus="autofocus" autocomplete="off">
+							<option selected value="1">男</option>
+							<option value="0">女</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="form-group clearfix">
+					<div class="input-group">
+						<input type="email" class="form-controlR" name="email" placeholder="邮箱" required="required" autofocus="autofocus" autocomplete="off">
+					</div>
+				</div>
+
+				<div class="form-group clearfix">
+					<div class="input-group">
+						<input type="datetime-local" class="form-controlR" name="birth" required="required" autofocus="autofocus" autocomplete="off">
+					</div>
+				</div>
+
+				<div class="form-group clearfix">
+					<div class="input-group">
+						<select class="form-controlR" name="identity" required="required" autofocus="autofocus" autocomplete="off">
+							<option value="0">超级管理员</option>
+							<option value="1">普通用户</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<input type="submit" class="btn btn-danger btn-block btn-login" id="submitBtn" value="注册"/>				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<script th:src="@{/js/TweenLite/TweenLite.min.js}"></script>
+<script th:src="@{/js/TweenLite/EasePack.min.js}"></script>
+<script th:src="@{/js/TweenLite/rAF.js}"></script>
+<script th:src="@{/js/TweenLite/demo-1.js}"></script>
+</body>
+</html>

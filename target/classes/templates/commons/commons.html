@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- 顶部开始 -->
+<div class="container" th:fragment="topbar">
+    <div class="logo"><a href="">XiaoMin</a></div>
+    <div class="open-nav"><i class="iconfont">&#xe699;</i></div>
+    <ul class="layui-nav right" lay-filter="">
+        <li class="layui-nav-item">
+            <a href="">[[${session.loginUser}]]</a>
+            <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                <dd><a href="">个人信息</a></dd>
+                <dd><a href="">切换帐号</a></dd>
+                <dd><a th:href="@{/user/logout}">退出</a></dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item"><a href="">前台首页</a></li>
+    </ul>
+</div>
+<!-- 顶部结束 -->
+
+<!-- 左侧菜单开始 -->
+<div class="left-nav" th:fragment="leftbar">
+    <div id="side-nav">
+        <ul id="nav">
+            <li class="list" current>
+                <a href="">
+                    <i class="iconfont">&#xe761;</i>
+                    欢迎页面
+                    <i class="iconfont nav_right">&#xe697;</i>
+                </a>
+            </li>
+            <li class="list">
+                <a href="javascript:;">
+                    <i class="iconfont">&#xe70b;</i>
+                    用户管理
+                    <i class="iconfont nav_right">&#xe697;</i>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a th:href="@{/list}">
+                            <i class="iconfont">&#xe6a7;</i>
+                            用户列表
+                        </a>
+                    </li>
+                    <li>
+                        <a th:href="@{/del}">
+                            <i class="iconfont">&#xe6a7;</i>
+                            用户删除
+                        </a>
+                    </li>
+                    <li>
+                        <a th:href="@{/level}">
+                            <i class="iconfont">&#xe6a7;</i>
+                            等级管理
+                        </a>
+                    </li>
+                    <li>
+                        <a th:href="@{/kiss}">
+                            <i class="iconfont">&#xe6a7;</i>
+                            积分管理
+                        </a>
+                    </li>
+                    <li>
+                        <a th:href="@{/view}">
+                            <i class="iconfont">&#xe6a7;</i>
+                            浏览记录
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="list" >
+                <a href="javascript:;">
+                    <i class="iconfont">&#xe6a3;</i>
+                    分类管理
+                    <i class="iconfont nav_right">&#xe697;</i>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="@{/X-Admin}category.html">
+                            <i class="iconfont">&#xe6a7;</i>
+                            分类列表
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="list" >
+                <a href="javascript:;">
+                    <i class="iconfont">&#xe6a3;</i>
+                    轮播管理
+                    <i class="iconfont nav_right">&#xe697;</i>
+                </a>
+                <ul class="sub-menu" style="display:none">
+                    <li>
+                        <a href="@{/X-Admin}banner-list.html">
+                            <i class="iconfont">&#xe6a7;</i>
+                            轮播列表
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="list" >
+                <a href="javascript:;">
+                    <i class="iconfont">&#xe6a3;</i>
+                    管理员管理
+                    <i class="iconfont nav_right">&#xe697;</i>
+                </a>
+                <ul class="sub-menu" style="display:none">
+                    <li>
+                        <a href="@{/X-Admin}banner-list.html">
+                            <i class="iconfont">&#xe6a7;</i>
+                            轮播列表
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="list" >
+                <a href="javascript:;">
+                    <i class="iconfont">&#xe6a3;</i>
+                    系统统计
+                    <i class="iconfont nav_right">&#xe697;</i>
+                </a>
+                <ul class="sub-menu" style="display:none">
+                    <li>
+                        <a href="@{/X-Admin}echarts1.html">
+                            <i class="iconfont">&#xe6a7;</i>
+                            拆线图
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@{/X-Admin}echarts2.html">
+                            <i class="iconfont">&#xe6a7;</i>
+                            柱状图
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@{/X-Admin}echarts3.html">
+                            <i class="iconfont">&#xe6a7;</i>
+                            地图
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@{/X-Admin}echarts4.html">
+                            <i class="iconfont">&#xe6a7;</i>
+                            饼图
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@{/X-Admin}echarts5.html">
+                            <i class="iconfont">&#xe6a7;</i>
+                            k线图
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@{/X-Admin}echarts6.html">
+                            <i class="iconfont">&#xe6a7;</i>
+                            仪表图
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://echarts.baidu.com/examples.html">
+                            <i class="iconfont">&#xe6a7;</i>
+                            更多案例
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="list" >
+                <a href="javascript:;">
+                    <i class="iconfont">&#xe6a3;</i>
+                    系统设置
+                    <i class="iconfont nav_right">&#xe697;</i>
+                </a>
+                <ul class="sub-menu" style="display:none">
+                    <li>
+                        <a href="@{/X-Admin}banner-list.html">
+                            <i class="iconfont">&#xe6a7;</i>
+                            轮播列表
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- 左侧菜单结束 -->
+
+<!-- 底部开始 -->
+<div class="footer" th:fragment="footerbar">
+    <div class="copyright">Copyright ©2022 xiaomin v2.3 All Rights Reserved.</div>
+</div>
+<!-- 底部结束 -->
+
+<!-- 背景切换开始 -->
+<div class="bg-changer" th:fragment="bgchange">
+    <div class="swiper-container changer-list">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img class="item" th:src="@{/X-Admin/images/a.jpg}" alt=""></div>
+            <div class="swiper-slide"><img class="item" th:src="@{/X-Admin/images/b.jpg}" alt=""></div>
+            <div class="swiper-slide"><img class="item" th:src="@{/X-Admin/images/c.jpg}" alt=""></div>
+            <div class="swiper-slide"><img class="item" th:src="@{/X-Admin/images/d.jpg}" alt=""></div>
+            <div class="swiper-slide"><img class="item" th:src="@{/X-Admin/images/e.jpg}" alt=""></div>
+            <div class="swiper-slide"><img class="item" th:src="@{/X-Admin/images/f.jpg}" alt=""></div>
+            <div class="swiper-slide"><img class="item" th:src="@{/X-Admin/images/g.jpg}" alt=""></div>
+            <div class="swiper-slide"><img class="item" th:src="@{/X-Admin/images/h.jpg}" alt=""></div>
+            <div class="swiper-slide"><img class="item" th:src="@{/X-Admin/images/i.jpg}" alt=""></div>
+            <div class="swiper-slide"><img class="item" th:src="@{/X-Admin/images/j.jpg}" alt=""></div>
+            <div class="swiper-slide"><img class="item" th:src="@{/X-Admin/images/k.jpg}" alt=""></div>
+            <div class="swiper-slide"><span class="reset">初始化</span></div>
+        </div>
+    </div>
+    <div class="bg-out"></div>
+    <div id="changer-set"><i class="iconfont">&#xe696;</i></div>
+</div>
+<!-- 背景切换结束 -->
+</html>
