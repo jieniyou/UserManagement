@@ -29,6 +29,13 @@ public class UserController {
         model.addAttribute("users",users);
         return "X-Admin/member-list";
     }
+    @RequestMapping("/vip-list")
+    public String vipList(Model model){
+
+        Collection<User> users = userDao.getAllUser();
+        model.addAttribute("users",users);
+        return "X-Admin/member-vip-list";
+    }
 
     @RequestMapping("/user/register")
     public String ToRegisterPage(){
