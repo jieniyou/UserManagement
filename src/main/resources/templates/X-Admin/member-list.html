@@ -53,7 +53,7 @@
     <div class="page-content">
         <div class="content">
             <!-- 右侧内容框架,更改从这里开始 -->
-            <form class="layui-form xbs" action="" >
+            <form class="layui-form xbs" method="post" th:action="@{/user/getUserById}" target="_self">
                 <div class="layui-form-pane" style="text-align: center;">
                     <div class="layui-form-item" style="display: inline-block;">
                         <label class="layui-form-label xbs768">日期范围</label>
@@ -67,7 +67,7 @@
                             <input type="text" name="username"  placeholder="请输入用户名" autocomplete="off" class="layui-input">
                         </div>
                         <div class="layui-input-inline" style="width:80px">
-                            <button class="layui-btn"  lay-submit="" lay-filter="search"><i class="layui-icon">&#xe615;</i></button>
+                            <button class="layui-btn" type="submit"  lay-submit="" lay-filter="search"><i class="layui-icon">&#xe615;</i></button>
                         </div>
                     </div>
                 </div>
@@ -75,7 +75,7 @@
             <xblock>
                 <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon">&#xe640;</i>批量删除</button>
                 <button class="layui-btn" th:onclick="member_add('添加用户','/member_add','600','500')"><i class="layui-icon">&#xe608;</i>添加</button>
-                <span class="x-right" style="line-height:40px">共有数据：88 条</span>
+                <!--<span class="x-right" style="line-height:40px">共有数据：88 条</span>-->
             </xblock>
             <table class="layui-table">
                 <thead>
@@ -125,15 +125,23 @@
                             <i class="layui-icon">&#xe62f;</i>
                         </a>
 
-                        <a title="编辑" href="javascript:;" onclick="member_edit('编辑','/member_edit','','510')"
+                        <a title="编辑" href="javascript:;" th:onclick="member_edit(
+                            '编辑','/member_edit',
+                            '[[${user.id}]]','[[${user.userName}]]',
+                            '[[${user.password}]]','[[${user.gender}]]',
+                            '[[${user.email}]]','[[${user.birth}]]',
+                            '[[${user.identity}]]','[[${user.status}]]',
+                            '','510')"
                            class="ml-5" style="text-decoration:none">
                             <i class="layui-icon">&#xe642;</i>
                         </a>
 
+                        <!--
                         <a style="text-decoration:none"  onclick="member_password('修改密码','/member_password','10001','600','400')"
                            href="javascript:;" title="修改密码">
                             <i class="layui-icon">&#xe631;</i>
                         </a>
+                        -->
 
                         <a title="删除" href="javascript:;" onclick="member_del(this,'1')"
                            style="text-decoration:none">
@@ -237,8 +245,8 @@
         });
     }
     // 用户-编辑
-    function member_edit (title,url,id,w,h) {
-        my_show(title,url,id,w,h);
+    function member_edit (title,url,id,userName,password,gender,email,birth,identity,status,w,h) {
+        my_show(title,url,id,userName,password,gender,email,birth,identity,status,w,h);
     }
     /*密码-修改*/
     function member_password(title,url,id,w,h){
@@ -248,6 +256,7 @@
     function member_del(obj,id){
         layer.confirm('确认要删除吗？',function(index){
             //发异步删除数据
+            console.log("==>>>"+obj[0]);
             $(obj).parents("tr").remove();
             layer.msg('已删除!',{icon:1,time:1000});
         });

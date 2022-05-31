@@ -53,6 +53,18 @@ public class UserController {
         userDao.addUser(user);
         return "main";
     }
+    @RequestMapping("/user/edit")
+    public String toEdit(User user){
+        userDao.addUser(user);
+        return "main";
+    }
+    @RequestMapping("/user/getUserById")
+    public String toGetUserById(Integer username,Model model){
+        User user = userDao.getUserById(username);
+        System.out.println("============>"+username);
+        model.addAttribute("getUserById",user);
+        return "main";
+    }
 
 
 

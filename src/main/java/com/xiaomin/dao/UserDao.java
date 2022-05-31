@@ -42,6 +42,9 @@ public class UserDao {
         if (user.getId() == null) {
             user.setId(initId++);
         }
+        if (user.getStatus()==null){
+            user.setStatus(0);
+        }
         users.put(user.getId(),user);
     }
 
@@ -52,7 +55,6 @@ public class UserDao {
     public User getUserById(Integer id){
         return users.get(id);
     }
-
 
     public void deleteUserById(Integer id){
         users.remove(id);

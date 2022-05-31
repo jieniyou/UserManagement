@@ -21,8 +21,8 @@
         <div class="page-content">
           <div class="content">
             <!-- 右侧内容框架，更改从这里开始 -->
-              <iframe style="display: none" id="myIframe" name="myIframe"></iframe>
-            <form class="layui-form" th:action="@{/user/add}" target="myIframe">
+            <!--  <iframe style="display: none" id="myIframe" name="myIframe"></iframe>-->
+            <form class="layui-form" method="post" th:action="@{/user/add}" target="_parent">
 
                 <div class="layui-form-item">
                     <label for="L_username" class="layui-form-label">
@@ -101,16 +101,6 @@
                         </select>
                     </div>
                 </div>
-
-                <!--<div class="layui-form-item">-->
-                <!--    <label for="L_repass" class="layui-form-label">-->
-                <!--        &lt;!&ndash;<span class="x-red">*</span>确认密码&ndash;&gt;-->
-                <!--    </label>-->
-                <!--    <div class="layui-input-inline">-->
-                <!--        <input type="hidden" id="L_repass" name="repass" required="" lay-verify="repass"-->
-                <!--        autocomplete="off" class="layui-input">-->
-                <!--    </div>-->
-                <!--</div>-->
 
                 <div class="layui-form-item">
                     <label for="L_status" class="layui-form-label">

@@ -72,10 +72,12 @@
     <!-- 中部结束 -->
 <script>
     function child(obj){
+
+
         let userName=document.getElementById("L_username");
-        userName.value=obj[0];
+        userName.value=obj[0].replace("\"","").replace("\"","");
         let email=document.getElementById("L_email");
-        email.value=obj[1];
+        email.value=obj[1].replace("\"","").replace("\"","");
         let gender=document.getElementById("L_gender");
         if (obj[2]=="0"){
             let g="女";
