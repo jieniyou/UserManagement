@@ -53,7 +53,7 @@
     <div class="page-content">
         <div class="content">
             <!-- 右侧内容框架,更改从这里开始 -->
-            <form class="layui-form xbs" action="" >
+            <form class="layui-form xbs" method="post" th:action="@{/user/getUserById}" target="_self">
                 <div class="layui-form-pane" style="text-align: center;">
                     <div class="layui-form-item" style="display: inline-block;">
                         <label class="layui-form-label xbs768">日期范围</label>
@@ -67,15 +67,15 @@
                             <input type="text" name="username"  placeholder="请输入用户名" autocomplete="off" class="layui-input">
                         </div>
                         <div class="layui-input-inline" style="width:80px">
-                            <button class="layui-btn"  lay-submit="" lay-filter="search"><i class="layui-icon">&#xe615;</i></button>
+                            <button class="layui-btn" type="submit"  lay-submit="" lay-filter="search"><i class="layui-icon">&#xe615;</i></button>
                         </div>
                     </div>
                 </div>
             </form>
             <xblock>
                 <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon">&#xe640;</i>批量删除</button>
-                <button class="layui-btn" th:onclick="member_add('添加用户','/member_add','600','500')"><i class="layui-icon">&#xe608;</i>添加</button>
-                <span class="x-right" style="line-height:40px">共有数据：88 条</span>
+                <button class="layui-btn" onclick="member_add('添加用户','/member_add','600','500')"><i class="layui-icon">&#xe608;</i>添加</button>
+                <!--<span class="x-right" style="line-height:40px">共有数据：88 条</span>-->
             </xblock>
             <table class="layui-table">
                 <thead>
@@ -125,17 +125,33 @@
                             <i class="layui-icon">&#xe62f;</i>
                         </a>
 
-                        <a title="编辑" href="javascript:;" onclick="member_edit('编辑','/member_edit','','510')"
+                        <a title="编辑" href="javascript:;" th:onclick="member_edit(
+                            '编辑','/member_edit',
+                            '[[${user.id}]]','[[${user.userName}]]',
+                            '[[${user.password}]]','[[${user.gender}]]',
+                            '[[${user.email}]]','[[${user.birth}]]',
+                            '[[${user.identity}]]','[[${user.status}]]',
+                            '','510')"
                            class="ml-5" style="text-decoration:none">
                             <i class="layui-icon">&#xe642;</i>
                         </a>
 
+                        <!--
                         <a style="text-decoration:none"  onclick="member_password('修改密码','/member_password','10001','600','400')"
                            href="javascript:;" title="修改密码">
                             <i class="layui-icon">&#xe631;</i>
                         </a>
+                        -->
 
-                        <a title="删除" href="javascript:;" onclick="member_del(this,'1')"
+                        <!--<a title="删除" href="javascript:;" onclick="member_del(this,'1')"-->
+                        <!--   style="text-decoration:none">-->
+                        <!--    <i class="layui-icon">&#xe640;</i>-->
+                        <!--</a>-->
+                        <!--<a title="删除" href="javascript:;" onclick="check('1001')"-->
+                        <!--   style="text-decoration:none">-->
+                        <!--    <i class="layui-icon">&#xe640;</i>-->
+                        <!--</a>-->
+                        <a title="删除" href="javascript:;" th:onclick="member_del(this,'[[${user.getId()}]]')"
                            style="text-decoration:none">
                             <i class="layui-icon">&#xe640;</i>
                         </a>
@@ -208,7 +224,7 @@
     }
     /*用户-添加*/
     function member_add(title,url,w,h){
-        my_show(title,url,w,h)
+        x_admin_show(title,url,w,h)
     }
     /*用户-查看*/
     function member_show(title,url,userName,email,gender,identity,w,h){
@@ -237,21 +253,82 @@
         });
     }
     // 用户-编辑
-    function member_edit (title,url,id,w,h) {
-        my_show(title,url,id,w,h);
+    function member_edit (title,url,id,userName,password,gender,email,birth,identity,status,w,h) {
+        my_show(title,url,id,userName,password,gender,email,birth,identity,status,w,h);
     }
     /*密码-修改*/
     function member_password(title,url,id,w,h){
         my_show(title,url,w,h);
     }
+
     /*用户-删除*/
-    function member_del(obj,id){
-        layer.confirm('确认要删除吗？',function(index){
-            //发异步删除数据
-            $(obj).parents("tr").remove();
-            layer.msg('已删除!',{icon:1,time:1000});
-        });
+    /**
+     * function member_del(obj,id){
+     *         layer.confirm('确认要删除吗？',function(index){
+     *
+     *             console.log("obj==>>>"+obj);
+     *             //发异步删除数据
+     *             $(obj).parents("tr").remove();
+     *             layer.msg('已删除!',{icon:1,time:1000});
+     *         });
+     *     }
+     *
+     *     function check(hitOrderId) {
+     *         console.log("hitOrderId=====>"+hitOrderId);
+     *         layer.confirm("审核后确定该订单业绩归属", {
+     *             icon: 3,
+     *             title: "系统提示",
+     *             btn: ['确认', '拒绝']
+     *         }, function (index) {
+     *             //审核通过
+     *             layer.close(index);
+     *             var data = {hitOrderId: hitOrderId,auditStatus:2};
+     *             $.operate.post(prefix + "/user/del", data);
+     *         }, function (index) {
+     *             //审核拒绝
+     *             layer.close(index);
+     *             var data = {hitOrderId: hitOrderId,auditStatus:3};
+     *             $.operate.post(prefix + "/user/del", data);
+     *         });
+     *     }
+     */
+
+    function member_del(obj,id) {
+        console.log(id)
+        let lock=false;//默认未锁定
+        let myconfirm=layer.confirm('确认要删除吗？',{btn: ['确定','取消']},function(index){
+                console.log(lock);
+                if(!lock){
+                    lock=true;//锁定
+                    //发送ajax
+                    $.ajax({
+                        url:  '/user/del',
+                        isAysn: false,
+                        type: 'get',
+                        contentType: 'application/json',
+                        data: {id},
+                        success: function (result) {
+
+                            let res=$.parseJSON(result);
+                            let code=res.code;
+
+                            if(code==0){
+                                layer.msg("已删除!");
+                                window.location.reload();
+                            }else{
+                                layer.msg(res.msg);
+                            }
+                        }
+                    });
+                    $(obj).parents("tr").remove();
+                }
+                layer.close(myconfirm);
+            }
+            ,function(index){
+                console.log('fail');
+            });
     }
+
 </script>
 
 <script type="text/javascript">

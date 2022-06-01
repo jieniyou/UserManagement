@@ -170,7 +170,7 @@ function x_admin_show(title,url,w,h){
         content: url
     });
 }
-function my_show(title,url,userName,email,gender,identity,w,h){
+function my_show(title,url,id,userName,password,gender,email,birth,identity,status,w,h){
     if (title == null || title == '') {
         title=false;
     };
@@ -183,7 +183,34 @@ function my_show(title,url,userName,email,gender,identity,w,h){
     if (h == null || h == '') {
         h=($(window).height() - 50);
     };
-    layer.open({
+    if (url == null || url == '') {
+        url="404.html";
+    };
+    /**if (id == null || id == '') {
+        id=" ";
+    };
+    if (userName == null || userName == '') {
+        userName=" ";
+    };
+    if (password == null || password == '') {
+        password=" ";
+    };
+    if (gender == null || gender == '') {
+        gender=" ";
+    };
+    if (email == null || email == '') {
+        email=" ";
+    };
+    if (birth == null || birth == '') {
+        birth=" ";
+    };
+    if (identity == null || identity == '') {
+        identity=" ";
+    };
+    if (status == null || status == '') {
+        status=" ";
+    };*/
+    let showPage=layer.open({
         type: 2,
         area: [w+'px', h +'px'],
         fix: false, //不固定
@@ -193,10 +220,15 @@ function my_show(title,url,userName,email,gender,identity,w,h){
         title: title,
         content: url,
         success: function (layero,index) {
-            var iframe = window['layui-layer-iframe' + index];
-            iframe.child([userName,email,gender,identity])
+            let iframe = window['layui-layer-iframe' + index];
+            iframe.child([
+                id,userName,password,
+                gender,email,birth,
+                identity,status
+            ])
         }
     });
+    // layer.close(showPage);
 }
 
 /*关闭弹出框口*/

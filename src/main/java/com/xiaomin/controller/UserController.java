@@ -58,6 +58,12 @@ public class UserController {
         userDao.addUser(user);
         return "main";
     }
+    @RequestMapping("/user/del")
+    public String toDel(Integer id){
+        System.out.println("执行删除方法,删除===>"+id);
+        userDao.deleteUserById(id);
+        return "main";
+    }
     @RequestMapping("/user/getUserById")
     public String toGetUserById(Integer username,Model model){
         User user = userDao.getUserById(username);

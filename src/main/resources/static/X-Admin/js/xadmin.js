@@ -210,7 +210,7 @@ function my_show(title,url,id,userName,password,gender,email,birth,identity,stat
     if (status == null || status == '') {
         status=" ";
     };*/
-    layer.open({
+    let showPage=layer.open({
         type: 2,
         area: [w+'px', h +'px'],
         fix: false, //不固定
@@ -221,12 +221,6 @@ function my_show(title,url,id,userName,password,gender,email,birth,identity,stat
         content: url,
         success: function (layero,index) {
             let iframe = window['layui-layer-iframe' + index];
-            // iframe.child({
-            //     'id':id,'userName':userName,
-            //     'password':password,'gender':gender,
-            //     'email':email,'birth':birth,
-            //     'identity':identity,'status':status
-            // })
             iframe.child([
                 id,userName,password,
                 gender,email,birth,
@@ -234,6 +228,7 @@ function my_show(title,url,id,userName,password,gender,email,birth,identity,stat
             ])
         }
     });
+    // layer.close(showPage);
 }
 
 /*关闭弹出框口*/
