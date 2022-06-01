@@ -83,6 +83,11 @@ public class UserController {
     public String toKissPage(){
         return "X-Admin/member-kiss";
     }
+
+    /**
+     * echarts图表
+     * @return
+     */
     @RequestMapping("/echarts1")
     public String toEcharts1Page(){
         return "X-Admin/echarts1";
@@ -90,10 +95,6 @@ public class UserController {
     @RequestMapping("/echarts2")
     public String toEcharts2Page(){
         return "X-Admin/echarts2";
-    }
-    @RequestMapping("/echarts3")
-    public String toEcharts3Page(){
-        return "X-Admin/echarts3";
     }
     @RequestMapping("/echarts4")
     public String toEcharts4Page(){
@@ -107,6 +108,8 @@ public class UserController {
     public String toEcharts6Page(){
         return "X-Admin/echarts6";
     }
+
+
     @RequestMapping("/demo")
     public String toDemoPage(){
         return "X-Admin/demo";
