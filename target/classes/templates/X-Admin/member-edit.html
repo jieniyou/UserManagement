@@ -90,8 +90,8 @@
     <div class="page-content">
         <div class="content">
             <!-- 右侧内容框架，更改从这里开始 -->
-            <!--  <iframe style="display: none" id="myIframe" name="myIframe"></iframe>-->
-            <form  method="post" th:action="@{/user/edit}" target="_parent">
+            <!--<iframe style="display: none" id="myIframe" name="myIframe"></iframe>-->
+            <form  method="post" th:action="@{/user/edit}" target="_self">
 
                 <input type="hidden" name="id" id="L_id"/>
 
@@ -186,7 +186,7 @@
                 <div class="layui-form-item">
                     <label for="L_status" class="layui-form-label">
                     </label>
-                    <button type="submit"  class="layui-btn" lay-filter="add" lay-submit="">
+                    <button type="submit" onclick="MyClose()"  class="layui-btn" lay-filter="add" lay-submit="">
                         提交
                     </button>
                 </div>
@@ -261,6 +261,10 @@
             status.children[0].value=obj[7];
             status.children[0].innerText=s;
         }
+        // x_admin_close();
+    }
+    function MyClose(){
+        x_admin_close();
     }
 </script>
 </body>

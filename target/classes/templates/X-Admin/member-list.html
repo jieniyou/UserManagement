@@ -118,10 +118,20 @@
                     </td>
                     <td class="td-manage">
 
-                        <a th:if="${user.getStatus()==1}" style="text-decoration:none" onclick="member_stop(this,'10001')" href="javascript:;" title="停用">
+                        <a th:if="${user.getStatus()==1}" style="text-decoration:none" th:onclick="member_stop(
+                        this,'[[${user.id}]]','[[${user.userName}]]',
+                            '[[${user.password}]]','[[${user.gender}]]',
+                            '[[${user.email}]]','[[${user.birth}]]',
+                            '[[${user.identity}]]','0'
+                        )" href="javascript:;" title="停用">
                             <i class="layui-icon">&#xe601;</i>
                         </a>
-                        <a th:if="${user.getStatus()==0}" style="text-decoration:none" onclick="member_start(this,'10001')" href="javascript:;" title="启用">
+                        <a th:if="${user.getStatus()==0}" style="text-decoration:none" th:onclick="member_start(
+                        this,'[[${user.id}]]','[[${user.userName}]]',
+                            '[[${user.password}]]','[[${user.gender}]]',
+                            '[[${user.email}]]','[[${user.birth}]]',
+                            '[[${user.identity}]]','1'
+                        )" href="javascript:;" title="启用">
                             <i class="layui-icon">&#xe62f;</i>
                         </a>
 
@@ -232,24 +242,53 @@
     }
 
     /*用户-停用*/
-    function member_stop(obj,id){
+    function member_stop(obj,id,userName,password,gender,email,birth,identity,status){
+        id=id.replace("\"","").replace("\"","");
+        userName=userName.replace("\"","").replace("\"","");
+        password=password.replace("\"","").replace("\"","");
+        gender=gender.replace("\"","").replace("\"","");
+        email=email.replace("\"","").replace("\"","");
+        birth=birth.replace("\"","").replace("\"","");
+        identity=identity.replace("\"","").replace("\"","");
         layer.confirm('确认要停用吗？',function(index){
             //发异步把用户状态进行更改
             $(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="member_start(this,id)" href="javascript:;" title="启用"><i class="layui-icon">&#xe62f;</i></a>');
             $(obj).parents("tr").find(".td-status").html('<span class="layui-btn layui-btn-disabled layui-btn-mini">已停用</span>');
             $(obj).remove();
+            $.ajax({
+                url:  '/user/edit',
+                isAysn: false,
+                type: 'get',
+                contentType: 'application/json',
+                data: {id,userName,password,gender,email,birth,identity,status}
+            });
             layer.msg('已停用!',{icon: 5,time:1000});
         });
     }
 
     /*用户-启用*/
-    function member_start(obj,id){
+    function member_start(obj,id,userName,password,gender,email,birth,identity,status){
+        id=id.replace("\"","").replace("\"","");
+        userName=userName.replace("\"","").replace("\"","");
+        password=password.replace("\"","").replace("\"","");
+        gender=gender.replace("\"","").replace("\"","");
+        email=email.replace("\"","").replace("\"","");
+        birth=birth.replace("\"","").replace("\"","");
+        identity=identity.replace("\"","").replace("\"","");
+        // status=status.replace("\"","").replace("\"","");
         layer.confirm('确认要启用吗？',function(index){
             //发异步把用户状态进行更改
             $(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="member_stop(this,id)" href="javascript:;" title="停用"><i class="layui-icon">&#xe601;</i></a>');
             $(obj).parents("tr").find(".td-status").html('<span class="layui-btn layui-btn-normal layui-btn-mini">已启用</span>');
             $(obj).remove();
             layer.msg('已启用!',{icon: 6,time:1000});
+            $.ajax({
+                url:  '/user/edit',
+                isAysn: false,
+                type: 'get',
+                contentType: 'application/json',
+                data: {id,userName,password,gender,email,birth,identity,status}
+            });
         });
     }
     // 用户-编辑
