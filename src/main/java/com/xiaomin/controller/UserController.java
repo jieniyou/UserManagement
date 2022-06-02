@@ -28,12 +28,6 @@ public class UserController {
         return allUser;
     }
 
-    public static void main(String[] args) {
-        UserController u=new UserController();
-        Collection allUser = u.getAllUser();
-        System.out.println(allUser.toArray());
-    }
-
 
 
     @Autowired
