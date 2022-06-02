@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace用于绑定Dao接口 -->
+<mapper namespace="com.xiaomin.mapper.UserMapper">
+    <!-- 用用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.xiaomin.pojo.User" >
+        <!-- column代表数据库列名，property代表实体类属性名 -->
+        <result column="id" property="id"/>
+        <result column="userName" property="userName"/>
+        <result column="password" property="password"/>
+        <result column="gender" property="password"/>
+        <result column="email" property="password"/>
+        <result column="birth" property="password"/>
+        <result column="identity" property="identity"/>
+        <result column="status" property="status"/>
+    </resultMap>
+
+    <select id="getAllUser" parameterType="String" resultMap="BaseResultMap">
+        select * from user_tb
+    </select>
+    <select id="getUserById" parameterType="String" resultMap="BaseResultMap">
+        select * from user_tb
+        <where>
+            id=#{id}
+        </where>
+    </select>
+    <insert id="addUser" parameterType="String" >
+        insert into user_tb (id, userName, password, gender, email, birth, identity, status)
+        values (#{id}, #{userName}, #{password}, #{gender}, #{email}, #{birth}, #{identity}, #{status});
+    </insert>
+    <delete id="deleteUserById" parameterType="String">
+        delete from user_tb where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    <update id="updateUser" parameterType="String">
+        update user_tb
+        <set>
+            <if test="id !=null">id=#{id},</if>
+            <if test="userName !=null">userName=#{userName},</if>
+            <if test="password !=null">password=#{password},</if>
+            <if test="gender !=null">gender=#{gender},</if>
+            <if test="email !=null">email=#{email},</if>
+            <if test="birth !=null">birth=#{birth},</if>
+            <if test="identity !=null">identity=#{identity},</if>
+            <if test="status !=null">status=#{status},</if>
+        </set>
+    </update>
+    <update id="updateUserStatusById" parameterType="String">
+        update user_tb
+        <set>
+            <if test="status !=null">status=#{status},</if>
+        </set>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+</mapper>

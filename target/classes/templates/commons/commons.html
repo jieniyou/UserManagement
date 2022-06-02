@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- 顶部开始 -->
+<div class="container" th:fragment="topbar">
+    <div class="logo"><a href="">XiaoMin</a></div>
+    <div class="open-nav"><i class="iconfont">&#xe699;</i></div>
+    <ul class="layui-nav right" lay-filter="">
+        <li class="layui-nav-item">
+            <!--<a href="">[[${session.loginUser}]]</a>-->
+            <a href="" th:text="${session.loginUser}"/>
+            <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                <dd><a href="">个人信息</a></dd>
+                <dd><a href="">切换帐号</a></dd>
+                <dd><a th:href="@{/user/logout}">退出</a></dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item"><a th:href="@{/main}">前台首页</a></li>
+    </ul>
+</div>
+<!-- 顶部结束 -->
+
+<!-- 左侧菜单开始 -->
+<div class="left-nav" th:fragment="leftbar">
+    <div id="side-nav">
+        <ul id="nav">
+
+            <li class="list" current>
+                <a href="/main">
+                    <i class="iconfont">&#xe761;</i>
+                    欢迎页面
+                    <i class="iconfont nav_right">&#xe697;</i>
+                </a>
+            </li>
+            <li class="list" current>
+                <a th:href="@{/demo}">
+                    <i class="iconfont">&#xe761;</i>
+                    小Demo
+                    <i class="iconfont nav_right">&#xe697;</i>
+                </a>
+            </li>
+
+            <li class="list">
+                <a href="javascript:;">
+                    <i class="iconfont">&#xe70b;</i>
+                    用户管理
+                    <i class="iconfont nav_right">&#xe697;</i>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a th:href="@{/list}">
+                            <i class="iconfont">&#xe6a7;</i>
+                            用户列表
+                        </a>
+                    </li>
+                    <li>
+                        <a th:href="@{/level}">
+                            <i class="iconfont">&#xe6a7;</i>
+                            等级管理
+                        </a>
+                    </li>
+                    <li>
+                        <a th:href="@{/kiss}">
+                            <i class="iconfont">&#xe6a7;</i>
+                            积分管理
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="list" >
+                <a href="javascript:;">
+                    <i class="iconfont">&#xe6a3;</i>
+                    管理员管理
+                    <i class="iconfont nav_right">&#xe697;</i>
+                </a>
+                <ul class="sub-menu" style="display:none">
+                    <li>
+                        <a th:href="@{/vip-list}">
+                            <i class="iconfont">&#xe6a7;</i>
+                            管理员列表
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="list" >
+                <a href="javascript:;">
+                    <i class="iconfont">&#xe6a3;</i>
+                    系统统计
+                    <i class="iconfont nav_right">&#xe697;</i>
+                </a>
+                <ul class="sub-menu" style="display:none">
+                    <li>
+                        <a th:href="@{/echarts1}">
+                            <i class="iconfont">&#xe6a7;</i>
+                            拆线图
+                        </a>
+                    </li>
+                    <li>
+                        <a th:href="@{/echarts2}">
+                            <i class="iconfont">&#xe6a7;</i>
+                            柱状图
+                        </a>
+                    </li>
+                    <li>
+                        <a th:href="@{/echarts4}">
+                            <i class="iconfont">&#xe6a7;</i>
+                            饼图
+                        </a>
+                    </li>
+                    <li>
+                        <a th:href="@{/echarts5}">
+                            <i class="iconfont">&#xe6a7;</i>
+                            k线图
+                        </a>
+                    </li>
+                    <li>
+                        <a th:href="@{/echarts6}">
+                            <i class="iconfont">&#xe6a7;</i>
+                            仪表图
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+        </ul>
+    </div>
+</div>
+<!-- 左侧菜单结束 -->
+
+<!-- 右侧内容框架,更改从这里开始 -->
+<form class="layui-form xbs" method="post" th:action="@{/user/getUserById}" target="_self" th:fragment="R_search">
+    <div class="layui-form-pane" style="text-align: center;">
+        <div class="layui-form-item" style="display: inline-block;">
+            <label class="layui-form-label xbs768">日期范围</label>
+            <div class="layui-input-inline xbs768">
+                <input class="layui-input" placeholder="开始日" id="LAY_demorange_s">
+            </div>
+            <div class="layui-input-inline xbs768">
+                <input class="layui-input" placeholder="截止日" id="LAY_demorange_e">
+            </div>
+            <div class="layui-input-inline">
+                <input type="text" name="username"  placeholder="请输入用户名" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-input-inline" style="width:80px">
+                <button class="layui-btn" type="submit"  lay-submit="" lay-filter="search"><i class="layui-icon">&#xe615;</i></button>
+            </div>
+        </div>
+    </div>
+</form>
+<xblock th:fragment="xblockAdd">
+    <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon">&#xe640;</i>批量删除</button>
+    <button class="layui-btn" onclick="member_add('添加用户','/member_add','600','500')"><i class="layui-icon">&#xe608;</i>添加</button>
+    <!--<span class="x-right" style="line-height:40px">共有数据：88 条</span>-->
+</xblock>
+
+<!--table-->
+<thead th:fragment="thead">
+<tr>
+    <th>
+        <input type="checkbox" id="selectAll"/>
+    </th>
+    <th>ID</th>
+    <th>用户名</th>
+    <th>密码</th>
+    <th>性别</th>
+    <th>邮箱</th>
+    <th>生日</th>
+    <th>身份</th>
+    <th>状态</th>
+    <th>操作</th>
+</tr>
+</thead>
+<tbody th:each="user:${users}" th:fragment="id(userid)">
+<tr th:if="${user.getIdentity()}==${userid}">
+    <td>
+        <input type="checkbox" th:value="${user.getId()}">
+    </td>
+    <td th:text="${user.getId()}"/>
+    <td>
+        <u style="cursor:pointer" th:onclick="member_show('[[${user.getUserName()}]]','/member_show','[[${user.getUserName()}]]','[[${user.getEmail()}]]','[[${user.getGender()}]]','[[${user.getIdentity()}]]','400','600')">
+            [[${user.getUserName()}]]
+        </u>
+    </td>
+    <td th:text="${user.getPassword()}"/>
+    <td th:text="${user.getGender()==0?'女':'男'}"/>
+    <td th:text="${user.getEmail()}"/>
+    <td th:text="${#dates.format(user.getBirth(),'yyyy-MM-dd')}"/>
+    <td th:text="${user.getIdentity()}==1?'超级管理员':'普通用户'"/>
+    <td class="td-status">
+                        <span th:if="${user.getStatus()==1}" class="layui-btn layui-btn-normal layui-btn-mini"
+                              th:text="${user.getStatus()==1?'已启用':'已停用'}"/>
+        <span th:if="${user.getStatus()==0}" class="layui-btn layui-btn-disabled layui-btn-mini"
+              th:text="${user.getStatus()==0?'已停用':'已启用'}"/>
+    </td>
+    <td class="td-manage">
+
+        <a th:if="${user.getStatus()==1}" style="text-decoration:none" th:onclick="member_stop(
+                        this,'[[${user.id}]]','[[${user.userName}]]',
+                            '[[${user.password}]]','[[${user.gender}]]',
+                            '[[${user.email}]]','[[${user.birth}]]',
+                            '[[${user.identity}]]','0'
+                        )" href="javascript:;" title="停用">
+            <i class="layui-icon">&#xe601;</i>
+        </a>
+        <a th:if="${user.getStatus()==0}" style="text-decoration:none" th:onclick="member_start(
+                        this,'[[${user.id}]]','[[${user.userName}]]',
+                            '[[${user.password}]]','[[${user.gender}]]',
+                            '[[${user.email}]]','[[${user.birth}]]',
+                            '[[${user.identity}]]','1'
+                        )" href="javascript:;" title="启用">
+            <i class="layui-icon">&#xe62f;</i>
+        </a>
+
+        <a title="编辑" href="javascript:;" th:onclick="member_edit(
+                            '编辑','/member_edit',
+                            '[[${user.id}]]','[[${user.userName}]]',
+                            '[[${user.password}]]','[[${user.gender}]]',
+                            '[[${user.email}]]','[[${user.birth}]]',
+                            '[[${user.identity}]]','[[${user.status}]]',
+                            '','510')"
+           class="ml-5" style="text-decoration:none">
+            <i class="layui-icon">&#xe642;</i>
+        </a>
+        <a title="删除" href="javascript:;" th:onclick="member_del(this,'[[${user.getId()}]]')"
+           style="text-decoration:none">
+            <i class="layui-icon">&#xe640;</i>
+        </a>
+
+    </td>
+</tr>
+</tbody>
+<!--table-->
+<!-- 右侧内容框架,更改从这里结束 -->
+
+</div>
+<!-- 中部结束 -->
+
+<!-- 底部开始 -->
+<div class="footer" th:fragment="footerbar">
+    <div class="copyright">Copyright &copy;2022 xiaomin v2.3 All Rights Reserved.</div>
+</div>
+<!-- 底部结束 -->
+
+<!-- 背景切换开始 -->
+<div class="bg-changer" th:fragment="bgchange">
+    <div class="swiper-container changer-list">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img class="item" th:src="@{/X-Admin/images/a.jpg}" alt=""></div>
+            <div class="swiper-slide"><img class="item" th:src="@{/X-Admin/images/b.jpg}" alt=""></div>
+            <div class="swiper-slide"><img class="item" th:src="@{/X-Admin/images/c.jpg}" alt=""></div>
+            <div class="swiper-slide"><img class="item" th:src="@{/X-Admin/images/d.jpg}" alt=""></div>
+            <div class="swiper-slide"><img class="item" th:src="@{/X-Admin/images/e.jpg}" alt=""></div>
+            <div class="swiper-slide"><img class="item" th:src="@{/X-Admin/images/f.jpg}" alt=""></div>
+            <div class="swiper-slide"><img class="item" th:src="@{/X-Admin/images/g.jpg}" alt=""></div>
+            <div class="swiper-slide"><img class="item" th:src="@{/X-Admin/images/h.jpg}" alt=""></div>
+            <div class="swiper-slide"><img class="item" th:src="@{/X-Admin/images/i.jpg}" alt=""></div>
+            <div class="swiper-slide"><img class="item" th:src="@{/X-Admin/images/j.jpg}" alt=""></div>
+            <div class="swiper-slide"><img class="item" th:src="@{/X-Admin/images/k.jpg}" alt=""></div>
+            <div class="swiper-slide"><img class="item" th:src="@{/X-Admin/images/l.jpg}" alt=""></div>
+            <div class="swiper-slide"><span class="reset">初始化</span></div>
+        </div>
+    </div>
+    <div class="bg-out"></div>
+    <div id="changer-set"><i class="iconfont">&#xe696;</i></div>
+</div>
+<!-- 背景切换结束 -->
+</html>

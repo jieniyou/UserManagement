@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>后台登录-X-admin1.1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon" />
+    <link rel="stylesheet" th:href="@{/X-Admin/css/font.css}">
+    <link rel="stylesheet" th:href="@{/X-Admin/css/xadmin.css}">
+    <link rel="stylesheet" th:href="@{https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.min.css}">
+    <script type="text/javascript" th:src="@{https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{https://cdn.bootcss.com/Swiper/3.4.2/js/swiper.jquery.min.js}"></script>
+    <script th:src="@{/X-Admin/lib/layui/layui.js}" charset="utf-8"></script>
+    <script type="text/javascript" th:src="@{/X-Admin/js/xadmin.js}"></script>
+
+</head>
+<body>
+<!-- 中部开始 -->
+<div class="wrapper">
+    <!-- 右侧主体开始 -->
+    <div class="page-content">
+        <div class="content">
+            <!-- 右侧内容框架，更改从这里开始 -->
+            <!--enctype="multipart/form-data"-->
+            <form  id="useradd" th:action="@{/user/add}" method="post">
+
+                <div class="layui-form-item">
+                    <label for="L_username" class="layui-form-label">
+                        <span class="x-red">*</span>用户名
+                    </label>
+                    <div class="layui-input-inline">
+                        <input type="text" id="L_username" name="userName" required="" lay-verify="userName"
+                               autocomplete="off" class="layui-input"/>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label for="L_pass" class="layui-form-label">
+                        <span class="x-red">*</span>密码
+                    </label>
+                    <div class="layui-input-inline">
+                        <input type="password" id="L_pass" name="password" required=""
+                               autocomplete="off" class="layui-input"/>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label for="L_gender" class="layui-form-label">
+                        <span class="x-red">*</span>性别
+                    </label>
+                    <div class="layui-input-inline">
+                        <select id="L_gender" name="gender" required="" lay-verify="gender"
+                                autocomplete="off" class="layui-input">
+                            <option value="1">男</option>
+                            <option value="0">女</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label for="L_email" class="layui-form-label">
+                        <span class="x-red">*</span>邮箱
+                    </label>
+                    <div class="layui-input-inline">
+                        <input type="text" id="L_email" name="email" required="" lay-verify="email"
+                               autocomplete="off" class="layui-input"/>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label for="L_birth" class="layui-form-label">
+                        <span class="x-red">*</span>生日
+                    </label>
+                    <div class="layui-input-inline">
+                        <input type="date" id="L_birth" name="birth" required="" lay-verify="birth"
+                               autocomplete="off" class="layui-input"/>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label for="L_identity" class="layui-form-label">
+                        <span class="x-red">*</span>身份
+                    </label>
+                    <div class="layui-input-inline">
+                        <select id="L_identity" name="identity" required="" lay-verify="identityT"
+                                autocomplete="off" class="layui-input">
+                            <option value="1">超级管理员</option>
+                            <option value="0">普通用户</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label for="L_status" class="layui-form-label">
+                        <span class="x-red">*</span>状态
+                    </label>
+                    <div class="layui-input-inline">
+                        <select id="L_status" name="status" required="" lay-verify="status"
+                                autocomplete="off" class="layui-input">
+                            <option value="1">启用</option>
+                            <option value="0">停用</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label for="L_status" class="layui-form-label">
+                    </label>
+                    <button onclick="userAdd();" type="submit" class="layui-btn" lay-filter="add" lay-submit="">
+                        增加
+                    </button>
+                </div>
+            </form>
+            <!-- 右侧内容框架，更改从这里结束 -->
+        </div>
+    </div>
+    <!-- 右侧主体结束 -->
+</div>
+<!-- 中部结束 -->
+
+<script>
+    let formData = new FormData(document.getElementById("useradd"));
+
+    // let userName=document.getElementById("L_username").value;
+    // let password=document.getElementById("L_pass").value;
+    // let gender=document.getElementById("L_gender").value;
+    // let email=document.getElementById("L_email").value;
+    // let birth=document.getElementById("L_birth").value;
+    // let identity=document.getElementById("L_identity").value;
+    // let status=document.getElementById("L_status").value;
+    function userAdd(){
+        x_admin_close();
+        // alert(userName);
+
+        // $.ajax({
+        //     dataType: "json",
+        //     type: "get", // 提交方式 get/post
+        //     url:  '/user/add',
+        //     contentType: 'application/json;charset=UTF-8"',
+        //     data: formData,
+        //         // .serialize(),
+        //         // {"userName":userName,"password":password,"gender":gender,"email":email,
+        //         // "birth":birth,"identity":identity,"status":status},
+        //     processData: false,
+        //     success: function(data) {
+        //
+        //     }
+        // });
+        // window.close();
+    }
+</script>
+</body>
+</html>

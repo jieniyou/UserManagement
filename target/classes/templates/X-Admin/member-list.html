@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>用户列表</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon" />
+    <link rel="stylesheet" th:href="@{/X-Admin/css/font.css}">
+    <link rel="stylesheet" th:href="@{/X-Admin/css/xadmin.css}">
+    <link rel="stylesheet" th:href="@{https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.min.css}">
+    <script type="text/javascript" th:src="@{https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{https://cdn.bootcss.com/Swiper/3.4.2/js/swiper.jquery.min.js}"></script>
+    <script th:src="@{/X-Admin/lib/layui/layui.js}" charset="utf-8"></script>
+    <script type="text/javascript" th:src="@{/X-Admin/js/xadmin.js}"></script>
+
+    <!--<script th:src="@{https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js}"></script>-->
+    <!--    <script>-->
+    <!--        function move(){-->
+    <!--        var _move=false;//移动标记-->
+    <!--        var _x,_y;//鼠标离控件左上角的相对位置-->
+    <!--        $("#changer-set2").click(function(){-->
+    <!--        //alert("click");//点击（松开后触发）-->
+    <!--    }).mousedown(function(e){-->
+    <!--        _move=true;-->
+    <!--        _x=e.pageX-parseInt($("#changer-set2").css("left"));-->
+    <!--        _y=e.pageY-parseInt($("#changer-set2").css("top"));-->
+    <!--        $("#changer-set2").fadeTo(20, 1);//点击后开始拖动并透明显示-->
+    <!--    });-->
+    <!--        $(document).mousemove(function(e){-->
+    <!--        if(_move){-->
+    <!--        var x=e.pageX-_x;//移动时根据鼠标位置计算控件左上角的绝对位置-->
+    <!--        var y=e.pageY-_y;-->
+    <!--        $("#changer-set2").css({top:y,left:x});//控件新位置-->
+    <!--    }-->
+    <!--    }).mouseup(function(){-->
+    <!--        _move=false;-->
+    <!--        $("#changer-set2").fadeTo("fast", 1);//松开鼠标后停止移动并恢复成不透明  "fast":规定褪色效果的速度。-->
+    <!--    });-->
+    <!--    }-->
+    <!--        move();-->
+    <!--</script>-->
+</head>
+<body>
+<!-- 顶部开始 -->
+<div th:replace="~{/commons/commons::topbar}"/>
+<!-- 顶部结束 -->
+<!-- 中部开始 -->
+<div class="wrapper">
+    <!-- 左侧菜单开始 -->
+    <div th:replace="~{/commons/commons::leftbar}"/>
+    <!-- 左侧菜单结束 -->
+    <!-- 右侧主体开始 -->
+    <div class="page-content">
+        <div class="content">
+            <!-- 右侧内容框架,更改从这里开始 -->
+            <div th:replace="~{/commons/commons::R_search}"/>
+            <div th:replace="~{/commons/commons::xblockAdd}"/>
+
+            <table class="layui-table">
+                <div th:replace="~{/commons/commons::thead}"/>
+                <div th:replace="~{/commons/commons::id(0)}"/>
+            </table>
+            <!-- 右侧内容框架,更改从这里结束 -->
+        </div>
+    </div>
+    <!-- 右侧主体结束 -->
+</div>
+<!-- 中部结束 -->
+<!-- 底部开始 -->
+<div th:replace="~{/commons/commons::footerbar}">
+</div>
+<!-- 底部结束 -->
+<!-- 背景切换开始 -->
+<div th:replace="~{/commons/commons::bgchange}">
+</div>
+<!-- 背景切换结束 -->
+<!-- 页面动态效果 -->
+
+<script th:src="@{/js/MyDIY.js}"></script>
+
+<script type="text/javascript">
+    // 获取单元格中的input
+    let inputList=document.querySelectorAll('table tr td input')
+    // 为全选绑定点击事件
+    selectAll.addEventListener('click',function(){
+        // 将全选复选框的选中状态保存在status中
+        let status=this.checked
+        // 遍历获取到的input
+        for(let i=0;i<inputList.length;i++){
+            // 为每个单元格的复选框的checked的属性赋值
+            inputList[i].checked=status
+        }
+    })
+    for(let i=0;i<inputList.length;i++){
+        inputList[i].addEventListener('click',function(){
+            let flag=true
+            for(let j=0;j<inputList.length;j++){
+                if(!inputList[j].checked){
+                    flag=false
+                    break
+                }
+            }
+            selectAll.checked=flag
+        })
+    }
+</script>
+
+</body>
+</html>
