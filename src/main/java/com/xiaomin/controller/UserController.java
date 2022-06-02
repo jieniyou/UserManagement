@@ -2,6 +2,7 @@ package com.xiaomin.controller;
 
 import com.xiaomin.dao.UserDao;
 import com.xiaomin.pojo.User;
+import com.xiaomin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +19,22 @@ import java.util.Collection;
  */
 @Controller
 public class UserController {
+
+    @Autowired
+    UserService userService;
+
+    public Collection getAllUser(){
+        Collection<User> allUser = userService.getAllUser();
+        return allUser;
+    }
+
+    public static void main(String[] args) {
+        UserController u=new UserController();
+        Collection allUser = u.getAllUser();
+        System.out.println(allUser.toArray());
+    }
+
+
 
     @Autowired
     UserDao userDao;
