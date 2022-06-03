@@ -2,8 +2,10 @@ package com.xiaomin.mapper;
 
 import com.xiaomin.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
+import java.util.List;
 
 /**
  * @Author: XiaoMin
@@ -12,9 +14,10 @@ import java.util.Collection;
  * @Date_Time: 2022/6/2 11:08
  */
 @Mapper
+@Repository
 public interface UserMapper {
 
-    Collection<User> getAllUser();
+    List<User> getAllUser();
     User getUserById(Integer id);
 
     void addUser(User user);

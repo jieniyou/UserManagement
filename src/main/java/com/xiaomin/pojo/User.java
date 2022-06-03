@@ -2,6 +2,7 @@ package com.xiaomin.pojo;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.ibatis.type.Alias;
 
 import java.util.Date;
 
@@ -13,6 +14,7 @@ import java.util.Date;
  */
 @Data
 @NoArgsConstructor
+@Alias("user")
 public class User {
     private Integer id;
     private String userName;

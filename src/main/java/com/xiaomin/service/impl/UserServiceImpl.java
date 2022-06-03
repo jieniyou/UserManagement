@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.List;
 
 /**
  * @Author: XiaoMin
@@ -20,7 +21,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
     @Override
-    public Collection<User> getAllUser() {
+    public List<User> getAllUser() {
         return userMapper.getAllUser();
     }
 

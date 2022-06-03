@@ -3,6 +3,7 @@ package com.xiaomin.service;
 import com.xiaomin.pojo.User;
 
 import java.util.Collection;
+import java.util.List;
 
 /**
  * @Author: XiaoMin
@@ -11,7 +12,7 @@ import java.util.Collection;
  * @Date_Time: 2022/6/2 11:16
  */
 public interface UserService {
-    Collection<User> getAllUser();
+    List<User> getAllUser();
     User getUserById(Integer id);
 
     void addUser(User user);

@@ -1,15 +1,18 @@
 package com.xiaomin.controller;
 
 import com.xiaomin.dao.UserDao;
+import com.xiaomin.mapper.UserMapper;
 import com.xiaomin.pojo.User;
 import com.xiaomin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Collection;
+import java.util.List;
 
 /**
  * @Author: XiaoMin
@@ -21,13 +24,16 @@ import java.util.Collection;
 public class UserController {
 
     @Autowired
-    UserService userService;
+    private UserMapper userMapper;//注入Service
 
-    public Collection getAllUser(){
-        Collection<User> allUser = userService.getAllUser();
+    @GetMapping("/AllUserList")
+    @ResponseBody
+    public List<User> getAllUser() {
+        System.out.println("进入User列表");
+        List<User> allUser = userMapper.getAllUser();
+        allUser.forEach(x-> System.out.println(x));
         return allUser;
     }
-
 
 
     @Autowired
