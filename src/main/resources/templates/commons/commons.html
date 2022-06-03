@@ -195,19 +195,21 @@
     </td>
     <td class="td-manage">
 
+        <!--'[[${user.userName}]]',
+        '[[${user.password}]]','[[${user.gender}]]',
+        '[[${user.email}]]','[[${user.birth}]]',
+        '[[${user.identity}]]',-->
         <a th:if="${user.getStatus()==1}" style="text-decoration:none" th:onclick="member_stop(
-                        this,'[[${user.id}]]','[[${user.userName}]]',
-                            '[[${user.password}]]','[[${user.gender}]]',
-                            '[[${user.email}]]','[[${user.birth}]]',
-                            '[[${user.identity}]]','0'
+                        this,'[[${user.id}]]','0'
                         )" href="javascript:;" title="停用">
             <i class="layui-icon">&#xe601;</i>
         </a>
+        <!--'[[${user.userName}]]',
+        '[[${user.password}]]','[[${user.gender}]]',
+        '[[${user.email}]]','[[${user.birth}]]',
+        '[[${user.identity}]]',-->
         <a th:if="${user.getStatus()==0}" style="text-decoration:none" th:onclick="member_start(
-                        this,'[[${user.id}]]','[[${user.userName}]]',
-                            '[[${user.password}]]','[[${user.gender}]]',
-                            '[[${user.email}]]','[[${user.birth}]]',
-                            '[[${user.identity}]]','1'
+                        this,'[[${user.id}]]','1'
                         )" href="javascript:;" title="启用">
             <i class="layui-icon">&#xe62f;</i>
         </a>

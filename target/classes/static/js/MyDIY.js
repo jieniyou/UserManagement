@@ -53,19 +53,20 @@ function member_show(title,url,userName,email,gender,identity,w,h){
 }
 
 /*用户-停用*/
-function member_stop(obj,id,userName,password,gender,email,birth,identity,status){
+// ,userName,password,gender,email,birth,identity
+function member_stop(obj,id,status){
     id=id.replace("\"","").replace("\"","");
-    userName=userName.replace("\"","").replace("\"","");
-    password=password.replace("\"","").replace("\"","");
-    gender=gender.replace("\"","").replace("\"","");
-    email=email.replace("\"","").replace("\"","");
-    birth=birth.replace("\"","").replace("\"","");
-    identity=identity.replace("\"","").replace("\"","");
-    status=status.replace("\"","").replace("\"","");
+    // userName=userName.replace("\"","").replace("\"","");
+    // password=password.replace("\"","").replace("\"","");
+    // gender=gender.replace("\"","").replace("\"","");
+    // email=email.replace("\"","").replace("\"","");
+    // birth=birth.replace("\"","").replace("\"","");
+    // identity=identity.replace("\"","").replace("\"","");
+    // status=status.replace("\"","").replace("\"","");
     layer.confirm('确认要停用吗？',function(index){
         //发异步把用户状态进行更改
         $(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="member_start(this,'
-            +id+','+userName+','+password+','+gender+','+email+','+birth+','+identity+','+layer+','+
+            +id+','/*+userName+','+password+','+gender+','+email+','+birth+','+identity+','*/+status+','+
             ')" href="javascript:;" title="启用"><i class="layui-icon">&#xe62f;</i></a>');
         $(obj).parents("tr").find(".td-status").html('<span class="layui-btn layui-btn-disabled layui-btn-mini">已停用</span>');
         $(obj).remove();
@@ -74,26 +75,27 @@ function member_stop(obj,id,userName,password,gender,email,birth,identity,status
             isAysn: false,
             type: 'get',
             contentType: 'application/json',
-            data: {id,userName,password,gender,email,birth,identity,status}
+            data: {id/*,userName,password,gender,email,birth,identity*/,status}
         });
         layer.msg('已停用!',{icon: 5,time:1000});
     });
 }
 
 /*用户-启用*/
-function member_start(obj,id,userName,password,gender,email,birth,identity,status){
+// ,userName,password,gender,email,birth,identity
+function member_start(obj,id,status){
     id=id.replace("\"","").replace("\"","");
-    userName=userName.replace("\"","").replace("\"","");
-    password=password.replace("\"","").replace("\"","");
-    gender=gender.replace("\"","").replace("\"","");
-    email=email.replace("\"","").replace("\"","");
-    birth=birth.replace("\"","").replace("\"","");
-    identity=identity.replace("\"","").replace("\"","");
+    // userName=userName.replace("\"","").replace("\"","");
+    // password=password.replace("\"","").replace("\"","");
+    // gender=gender.replace("\"","").replace("\"","");
+    // email=email.replace("\"","").replace("\"","");
+    // birth=birth.replace("\"","").replace("\"","");
+    // identity=identity.replace("\"","").replace("\"","");
     status=status.replace("\"","").replace("\"","");
     layer.confirm('确认要启用吗？',function(index){
         //发异步把用户状态进行更改
         $(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="member_stop(this,'
-            +id+','+userName+','+password+','+gender+','+email+','+birth+','+identity+','+layer+','+
+            +id+','/*+userName+','+password+','+gender+','+email+','+birth+','+identity+','*/+status+','+
             ')" href="javascript:;" title="停用"><i class="layui-icon">&#xe601;</i></a>');
         $(obj).parents("tr").find(".td-status").html('<span class="layui-btn layui-btn-normal layui-btn-mini">已启用</span>');
         $(obj).remove();
@@ -103,7 +105,7 @@ function member_start(obj,id,userName,password,gender,email,birth,identity,statu
             isAysn: false,
             type: 'get',
             contentType: 'application/json',
-            data: {id,userName,password,gender,email,birth,identity,status}
+            data: {id/*,userName,password,gender,email,birth,identity*/,status}
         });
     });
 }

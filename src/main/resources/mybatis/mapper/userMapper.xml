@@ -7,4 +7,25 @@
     <select id="getAllUser" resultMap="user">
         SELECT  * FROM user_tb
     </select>
+
+    <insert id="addUser" parameterType="User" keyProperty="id" useGeneratedKeys="true">
+        insert into user_tb (userName, password, gender, email, birth, identity, status)
+        values (#{userName}, #{password}, #{gender}, #{email}, #{birth}, #{identity}, ifnull(#{status},0));
+    </insert>
+
+    <update id="updateUser" parameterType="User">
+        update user_tb
+        set userName = ifnull(#{userName},userName),
+            password = ifnull(#{password},password),
+            gender = ifnull(#{gender},gender),
+            email = ifnull(#{email},email),
+            birth = ifnull(#{birth},birth),
+            identity = ifnull(#{identity},identity),
+            status = ifnull(#{status},status)
+        where id=#{id};
+    </update>
+
+    <delete id="deleteUserById" parameterType="User">
+        delete from user_tb where id=#{id};
+    </delete>
 </mapper>

@@ -26,6 +26,10 @@ public class UserController {
     @Autowired
     private UserService userService;//注入Service
 
+    /**
+     * 测试
+     * @return
+     */
     @GetMapping("/AllUserList")
     @ResponseBody
     public Collection<User> getAllUser() {
@@ -35,9 +39,6 @@ public class UserController {
         return allUser;
     }
 
-
-    @Autowired
-    UserDao userDao;
 
     @RequestMapping("/list")
     public String list(Model model){
@@ -56,13 +57,14 @@ public class UserController {
 
     @RequestMapping("/user/register")
     public String ToRegisterPage(){
+        System.out.println("进入注册页面");
         return "registered";
     }
     @RequestMapping("/register")
     public String ToRegister(User user){
         System.out.println("===>"+user.toString());
         userService.addUser(user);
-        return "index";
+        return "redirect:/index.html";
     }
 
     @RequestMapping("/user/add")
@@ -72,7 +74,8 @@ public class UserController {
     }
     @RequestMapping("/user/edit")
     public String toEdit(User user){
-        userService.addUser(user);
+        System.out.println(user);
+        userService.updateUser(user);
         return "main";
     }
     @RequestMapping("/user/del")
