@@ -12,7 +12,7 @@ import java.util.List;
  * @Date_Time: 2022/6/2 11:16
  */
 public interface UserService {
-    List<User> getAllUser();
+    Collection<User> getAllUser();
     User getUserById(Integer id);
 
     void addUser(User user);

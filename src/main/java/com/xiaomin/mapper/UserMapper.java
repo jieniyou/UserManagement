@@ -17,7 +17,7 @@ import java.util.List;
 @Repository
 public interface UserMapper {
 
-    List<User> getAllUser();
+    Collection<User> getAllUser();
     User getUserById(Integer id);
 
     void addUser(User user);

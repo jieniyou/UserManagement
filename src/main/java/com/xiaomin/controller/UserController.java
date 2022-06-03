@@ -24,13 +24,13 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    private UserMapper userMapper;//注入Service
+    private UserService userService;//注入Service
 
     @GetMapping("/AllUserList")
     @ResponseBody
-    public List<User> getAllUser() {
+    public Collection<User> getAllUser() {
         System.out.println("进入User列表");
-        List<User> allUser = userMapper.getAllUser();
+        Collection<User> allUser = userService.getAllUser();
         allUser.forEach(x-> System.out.println(x));
         return allUser;
     }
@@ -42,14 +42,14 @@ public class UserController {
     @RequestMapping("/list")
     public String list(Model model){
 
-        Collection<User> users = userDao.getAllUser();
+        Collection<User> users = userService.getAllUser();
         model.addAttribute("users",users);
         return "X-Admin/member-list";
     }
     @RequestMapping("/vip-list")
     public String vipList(Model model){
 
-        Collection<User> users = userDao.getAllUser();
+        Collection<User> users = userService.getAllUser();
         model.addAttribute("users",users);
         return "X-Admin/member-vip-list";
     }
@@ -61,29 +61,29 @@ public class UserController {
     @RequestMapping("/register")
     public String ToRegister(User user){
         System.out.println("===>"+user.toString());
-        userDao.addUser(user);
+        userService.addUser(user);
         return "index";
     }
 
     @RequestMapping("/user/add")
     public String toAdd(User user){
-        userDao.addUser(user);
+        userService.addUser(user);
         return "main";
     }
     @RequestMapping("/user/edit")
     public String toEdit(User user){
-        userDao.addUser(user);
+        userService.addUser(user);
         return "main";
     }
     @RequestMapping("/user/del")
     public String toDel(Integer id){
         System.out.println("执行删除方法,删除===>"+id);
-        userDao.deleteUserById(id);
+        userService.deleteUserById(id);
         return "main";
     }
     @RequestMapping("/user/getUserById")
     public String toGetUserById(Integer username,Model model){
-        User user = userDao.getUserById(username);
+        User user = userService.getUserById(username);
         System.out.println("============>"+username);
         model.addAttribute("getUserById",user);
         return "main";
