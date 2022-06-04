@@ -225,7 +225,7 @@ function my_show(title,url,id,userName,password,gender,email,birth,identity,stat
                 id,userName,password,
                 gender,email,birth,
                 identity,status
-            ])
+            ]);
         }
     });
     // layer.close(showPage);

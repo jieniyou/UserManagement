@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -84,6 +86,17 @@ public class UserController {
         userService.deleteUserById(id);
         return "main";
     }
+    @RequestMapping("/user/delSelector")
+    public String toDelSelector(String ids){
+        System.out.println("进入了批量删除====>"+ids);
+        String[] id=ids.split(",");
+        for (String s : id) {
+            int i = Integer.parseInt(s);
+            userService.deleteUserById(i);
+        }
+        return "main";
+    }
+
     @RequestMapping("/user/getUserById")
     public String toGetUserById(Integer username,Model model){
         User user = userService.getUserById(username);
