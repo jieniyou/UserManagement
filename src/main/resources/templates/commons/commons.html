@@ -172,26 +172,28 @@
 </tr>
 </thead>
 <tbody th:each="user:${users}" th:fragment="id(userid)">
-<tr th:if="${user.getIdentity()}==${userid}">
+<tr th:if="${user.identity}==${userid}">
     <td>
-        <input type="checkbox" th:value="${user.getId()}">
+        <input type="checkbox" th:value="${user.id}">
     </td>
-    <td th:text="${user.getId()}"/>
+    <td th:text="${user.id}"/>
     <td>
-        <u style="cursor:pointer" th:onclick="member_show('[[${user.getUserName()}]]','/member_show','[[${user.getUserName()}]]','[[${user.getEmail()}]]','[[${user.getGender()}]]','[[${user.getIdentity()}]]','400','600')">
-            [[${user.getUserName()}]]
+        <u style="cursor:pointer" th:onclick="member_show('[[${user.uerName}]]',
+        '/member_show','[[${user.userName}]]','[[${user.email}]]','[[${user.gender}]]',
+        '[[${user.identity}]]','400','600')">
+            [[${user.userName}]]
         </u>
     </td>
-    <td th:text="${user.getPassword()}"/>
-    <td th:text="${user.getGender()==0?'女':'男'}"/>
-    <td th:text="${user.getEmail()}"/>
-    <td th:text="${#dates.format(user.getBirth(),'yyyy-MM-dd')}"/>
-    <td th:text="${user.getIdentity()}==1?'超级管理员':'普通用户'"/>
+    <td th:text="${user.password}"/>
+    <td th:text="${user.gender==0?'女':'男'}"/>
+    <td th:text="${user.email}"/>
+    <td th:text="${#dates.format(user.birth,'yyyy-MM-dd')}"/>
+    <td th:text="${user.identity}==1?'超级管理员':'普通用户'"/>
     <td class="td-status">
-                        <span th:if="${user.getStatus()==1}" class="layui-btn layui-btn-normal layui-btn-mini"
-                              th:text="${user.getStatus()==1?'已启用':'已停用'}"/>
-        <span th:if="${user.getStatus()==0}" class="layui-btn layui-btn-disabled layui-btn-mini"
-              th:text="${user.getStatus()==0?'已停用':'已启用'}"/>
+                        <span th:if="${user.status==1}" class="layui-btn layui-btn-normal layui-btn-mini"
+                              th:text="${user.status==1?'已启用':'已停用'}"/>
+        <span th:if="${user.status==0}" class="layui-btn layui-btn-disabled layui-btn-mini"
+              th:text="${user.status==0?'已停用':'已启用'}"/>
     </td>
     <td class="td-manage">
 
@@ -199,7 +201,7 @@
         '[[${user.password}]]','[[${user.gender}]]',
         '[[${user.email}]]','[[${user.birth}]]',
         '[[${user.identity}]]',-->
-        <a th:if="${user.getStatus()==1}" style="text-decoration:none" th:onclick="member_stop(
+        <a th:if="${user.status==1}" style="text-decoration:none" th:onclick="member_stop(
                         this,'[[${user.id}]]','0'
                         )" href="javascript:;" title="停用">
             <i class="layui-icon">&#xe601;</i>
@@ -208,7 +210,7 @@
         '[[${user.password}]]','[[${user.gender}]]',
         '[[${user.email}]]','[[${user.birth}]]',
         '[[${user.identity}]]',-->
-        <a th:if="${user.getStatus()==0}" style="text-decoration:none" th:onclick="member_start(
+        <a th:if="${user.status==0}" style="text-decoration:none" th:onclick="member_start(
                         this,'[[${user.id}]]','1'
                         )" href="javascript:;" title="启用">
             <i class="layui-icon">&#xe62f;</i>
@@ -224,7 +226,7 @@
            class="ml-5" style="text-decoration:none">
             <i class="layui-icon">&#xe642;</i>
         </a>
-        <a title="删除" href="javascript:;" th:onclick="member_del(this,'[[${user.getId()}]]')"
+        <a title="删除" href="javascript:;" th:onclick="member_del(this,'[[${user.id}]]')"
            style="text-decoration:none">
             <i class="layui-icon">&#xe640;</i>
         </a>
