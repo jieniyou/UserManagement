@@ -5,7 +5,11 @@
     <parameterMap id="user" type="com.xiaomin.pojo.User"/>
 
     <select id="getAllUser" resultMap="user">
-        SELECT  * FROM user_tb
+        select  * from user_tb
+    </select>
+    <select id="login" resultMap="user">
+        select  userName,password,identity,status from user_tb
+        where userName=#{userName} and password=#{password}
     </select>
 
     <insert id="addUser" parameterType="User" keyProperty="id" useGeneratedKeys="true">

@@ -12,6 +12,9 @@
     <script type="text/javascript" th:src="@{https://cdn.bootcss.com/Swiper/3.4.2/js/swiper.jquery.min.js}"></script>
     <script th:src="@{/X-Admin/lib/layui/layui.js}" charset="utf-8"></script>
     <script type="text/javascript" th:src="@{/X-Admin/js/xadmin.js}"></script>
+    <!--layui-->
+    <!--<link rel="stylesheet" type="text/css" href="https://www.layuicdn.com/layui/css/layui.css" />-->
+    <!--<script src="https://www.layuicdn.com/layui/layui.js"></script>-->
 
     <!--<script th:src="@{https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js}"></script>-->
     <!--    <script>-->
@@ -76,6 +79,14 @@
 <!-- 背景切换结束 -->
 <!-- 页面动态效果 -->
 
+<!--<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">-->
+<!--    <legend>自定义主题 - 颜色随意定义</legend>-->
+<!--</fieldset>-->
+
+<!--<div id="demo2"></div>-->
+<!--<div id="demo2-1"></div>-->
+<!--<div id="demo2-2"></div>-->
+
 <script th:src="@{/js/MyDIY.js}"></script>
 
 <script type="text/javascript">
@@ -104,6 +115,34 @@
         })
     }
 </script>
+
+<!--分页-->
+<!--<script>-->
+<!--    layui.use(['laypage', 'layer'], function(){-->
+<!--        var laypage = layui.laypage-->
+<!--            ,layer = layui.layer;-->
+
+
+<!--        //自定义样式-->
+<!--        laypage.render({-->
+<!--            elem: 'demo2'-->
+<!--            ,count: 100-->
+<!--            ,theme: '#1E9FFF'-->
+<!--        });-->
+<!--        laypage.render({-->
+<!--            elem: 'demo2-1'-->
+<!--            ,count: 100-->
+<!--            ,theme: '#FF5722'-->
+<!--        });-->
+<!--        laypage.render({-->
+<!--            elem: 'demo2-2'-->
+<!--            ,count: 100-->
+<!--            ,theme: '#FFB800'-->
+<!--        });-->
+
+
+<!--    });-->
+<!--</script>-->
 
 </body>
 </html>

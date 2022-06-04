@@ -19,6 +19,7 @@ public interface UserMapper {
 
     Collection<User> getAllUser();
     User getUserById(Integer id);
+    User login(String userName,String password);
 
     void addUser(User user);
     void deleteUserById(Integer id);
