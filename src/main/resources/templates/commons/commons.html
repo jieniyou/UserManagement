@@ -10,7 +10,7 @@
             <a href="" th:text="${session.loginUser}"/>
             <dl class="layui-nav-child"> <!-- 二级菜单 -->
                 <dd><a href="">个人信息</a></dd>
-                <dd><a href="">切换帐号</a></dd>
+                <dd><a href="/">切换帐号</a></dd>
                 <dd><a th:href="@{/user/logout}">退出</a></dd>
             </dl>
         </li>
@@ -178,7 +178,7 @@
     </td>
     <td th:text="${user.id}"/>
     <td>
-        <u style="cursor:pointer" th:onclick="member_show('[[${user.uerName}]]',
+        <u style="cursor:pointer" th:onclick="member_show('[[${user.userName}]]',
         '/member_show','[[${user.userName}]]','[[${user.email}]]','[[${user.gender}]]',
         '[[${user.identity}]]','400','600')">
             [[${user.userName}]]
@@ -201,18 +201,18 @@
         '[[${user.password}]]','[[${user.gender}]]',
         '[[${user.email}]]','[[${user.birth}]]',
         '[[${user.identity}]]',-->
-        <a th:if="${user.status==1}" style="text-decoration:none" th:onclick="member_stop(
-                        this,'[[${user.id}]]','0'
-                        )" href="javascript:;" title="停用">
+        <a th:if="${user.status==1}" style="text-decoration:none"
+           th:onclick="member_stop(this,'[[${user.id}]]','0')"
+           href="javascript:;" title="停用">
             <i class="layui-icon">&#xe601;</i>
         </a>
         <!--'[[${user.userName}]]',
         '[[${user.password}]]','[[${user.gender}]]',
         '[[${user.email}]]','[[${user.birth}]]',
         '[[${user.identity}]]',-->
-        <a th:if="${user.status==0}" style="text-decoration:none" th:onclick="member_start(
-                        this,'[[${user.id}]]','1'
-                        )" href="javascript:;" title="启用">
+        <a th:if="${user.status==0}" style="text-decoration:none"
+           th:onclick="member_start(this,'[[${user.id}]]','1')"
+           href="javascript:;" title="启用">
             <i class="layui-icon">&#xe62f;</i>
         </a>
 
