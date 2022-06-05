@@ -40,7 +40,33 @@ layui.use(['laydate'], function(){
 function delAll () {
     layer.confirm('确认要删除吗？',function(index){
         //捉到所有被选中的，发异步进行删除
+        let checked=document.querySelectorAll("table tbody input");
+        let ids=[];
+
+        for (let i = 0; i < checked.length; i++) {
+            if (checked[i].checked){
+                ids.push(checked[i].value);
+                $(checked[i]).parents("tr").remove();
+            }
+            console.log(ids);
+        }
+        if (ids.length<=0){
+            layer.msg("请至少选择一个");
+            return;
+        }
+
+        $.ajax({
+            url: "/user/delSelector",
+            type: "get",
+            contentType: 'application/json',
+            isAysn: false,
+            data: {ids : ids.toString()},
+            success: function () {
+                // location.reload();
+            }
+        });
         layer.msg('删除成功', {icon: 1});
+
     });
 }
 /*用户-添加*/
