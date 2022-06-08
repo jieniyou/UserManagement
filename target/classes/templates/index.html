@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link th:href="@{/css/bootstrap.min.css}" type="text/css" rel="stylesheet">
+    <link th:href="@{/css/font-awesome.min.css}" type="text/javascript" rel="stylesheet">
+    <link th:href="@{/css/bootsnav.css}" type="text/css" rel="stylesheet">
+    <link th:href="@{/css/normalize.css}" type="text/css" rel="stylesheet">
+    <link th:href="@{/css/css.css}" rel="stylesheet" type="text/css">
+    <script th:src="@{/js/jquery-1.11.0.min.js}" type="text/javascript"></script>
+    <script th:src="@{/js/bootstrap.min.js}" type="text/javascript"></script>
+    <script th:src="@{/js/bootsnav.js}" type="text/javascript"></script>
+    <script th:src="@{/js/jquery.js}" type="text/javascript"></script>
+    <script th:src="@{/js/html5.js}"  type="text/javascript"></script>
+    <title>登录</title>
+</head>
+
+<body class="logobg_style">
+
+<div id="large-header" class="large-header login-page">
+    <canvas id="demo-canvas" width="1590" height="711"></canvas>
+    <div class="login-form">
+        <div class="login-content">
+            <h1 class="title_name">账户登录</h1>
+
+            <form th:action="@{/user/login}" method="post" role="form" id="form_login" class="login_padding">
+                <div class="form-group clearfix">
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i class="icon_user"></i>
+                        </div>
+                        <input type="text" class="form-control" name="userName" id="username" placeholder="用户名" autocomplete="off" required="" autofocus="" value="XiaoMin">
+                    </div>
+                </div>
+                <div class="form-group clearfix">
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i class="icon_password"></i>
+                        </div>
+                        <input type="password" class="form-control" name="password" id="password" placeholder="密码" required="" autocomplete="off" value="1314520">
+                    </div>
+                </div>
+                <div class=" textright"><a href="" class="forget">忘记密码？</a></div>
+                <div class="tishi"></div>
+                <div class="form-group">
+                    <p style="color: #ff0000" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"/>
+                    <input type="submit" class="btn btn-danger btn-block btn-login" value="登录"/>
+                </div>
+                <div class=" textright"><a th:href="@{/user/register}" class="forget">立即注册</a></div>
+                <div class="form-group">
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<script th:src="@{/js/TweenLite/TweenLite.min.js}"></script>
+<script th:src="@{/js/TweenLite/EasePack.min.js}"></script>
+<script th:src="@{/js/TweenLite/rAF.js}"></script>
+<script th:src="@{/js/TweenLite/demo-1.js}"></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaomin.mapper.KissMapper">
+    <resultMap id="userkiss" type="com.xiaomin.pojo.UserKiss"/>
+    <parameterMap id="userkiss" type="com.xiaomin.pojo.UserKiss"/>
+
+    <select id="getAllUserkiss" resultMap="userkiss">
+        select  * from intergal_tb
+    </select>
+
+    <update id="updateUserkiss" parameterType="userkiss">
+        update intergal_tb
+        set userName = ifnull(#{userName},userName),
+            intergal = ifnull(#{intergal},intergal)
+            where id=#{id};
+    </update>
+
+    <delete id="deleteUserKissById" parameterType="userkiss">
+        delete from intergal_tb where id=#{id};
+    </delete>
+
+</mapper>
