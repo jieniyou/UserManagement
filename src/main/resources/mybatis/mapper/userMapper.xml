@@ -32,4 +32,5 @@
     <delete id="deleteUserById" parameterType="User">
         delete from user_tb where id=#{id};
     </delete>
+
 </mapper>

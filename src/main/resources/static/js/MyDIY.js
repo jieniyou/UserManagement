@@ -40,12 +40,13 @@ layui.use(['laydate'], function(){
 function delAll () {
     layer.confirm('确认要删除吗？',function(index){
         //捉到所有被选中的，发异步进行删除
-        let checked=document.querySelectorAll("table tbody input");
+        let checked=document.querySelectorAll("tbody input");
         let ids=[];
 
         for (let i = 0; i < checked.length; i++) {
             if (checked[i].checked){
                 ids.push(checked[i].value);
+                console.log(checked[i].value);
                 $(checked[i]).parents("tr").remove();
             }
             console.log(ids);

@@ -47,54 +47,46 @@
                   </div>
                 </div> 
             </form>
-            <xblock><button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon">&#xe640;</i>批量删除</button><button class="layui-btn" onclick="kiss_add('添加事件','kiss-add.html')"><i class="layui-icon">&#xe608;</i>添加</button><span class="x-right" style="line-height:40px">共有数据：88 条</span></xblock>
-            <table class="layui-table">
-                <thead>
+            <xblock>
+                <button class="layui-btn layui-btn-danger" onclick="delKissAll()"><i class="layui-icon">&#xe640;</i>批量删除</button>
+                <button class="layui-btn" onclick="kiss_add('添加事件','/kiss-add','600','500')"><i class="layui-icon">&#xe608;</i>添加</button>
+<!--                <button class="layui-btn" onclick="member_add('添加用户','/member_add','600','500')"><i class="layui-icon">&#xe608;</i>添加</button>-->
+            </xblock>
+<!--              <thead th:fragment="thead">-->
+              <table class="layui-table">
                     <tr>
                         <th>
-                            <input type="checkbox" name="" value="">
+                            <input type="checkbox" id="selectAll">
                         </th>
-                        <th>
-                            ID
-                        </th>
-                        <th>
-                            事件
-                        </th>
-                        <th>
-                            积分
-                        </th>
-                        <th>
-                            操作
-                        </th>
+                        <th>ID</th>
+                        <th>用户名</th>
+                        <th>积分</th>
+                        <th>操作</th>
                     </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <input type="checkbox" value="1" name="">
-                        </td>
-                        <td>
-                            1
-                        </td>
-                        <td>
-                            回复
-                        </td>
-                        <td >
-                            5
-                        </td>
-                        <td class="td-manage">
-                            <a title="编辑" href="javascript:;" onclick="kiss_edit('编辑','kiss-edit.html','4','','300')"
-                            style="text-decoration:none">
-                                <i class="layui-icon">&#xe642;</i>
-                            </a>
-                            <a title="删除" href="javascript:;" onclick="kiss_del(this,'1')" 
-                            style="text-decoration:none">
-                                <i class="layui-icon">&#xe640;</i>
-                            </a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                  <tbody th:each="userkiss:${userkisss}" class="layui-table">
+                  <tr>
+                      <td>
+                          <input type="checkbox" th:value="${userkiss.id}">
+                      </td>
+                      <td th:text="${userkiss.id}"/>
+                      <td th:text="${userkiss.userName}"/>
+                      <td th:text="${userkiss.intergal}"/>
+                      <td class="td-manage">
+                          <a title="查看详情" href="javascript:;" th:onclick="kiss_edit(
+                            '查看详情','/kiss_edit',
+                            '[[${userkiss.id}]]','[[${userkiss.userName}]]',
+                            '[[${userkiss.intergal}]]',
+                            '','510')"
+                             class="ml-5" style="text-decoration:none">
+                              <i class="layui-icon">&#xe642;</i>
+                          </a>
+                      </td>
+                  </tr>
+                  </tbody>
+              </table>
+<!--              </thead>-->
+
+
             <!-- 右侧内容框架，更改从这里结束 -->
           </div>
         </div>
@@ -149,30 +141,72 @@
           }
           
         });
+        // 获取单元格中的input
+        let inputList=document.querySelectorAll('tbody tr td input')
+        // 为全选绑定点击事件
+        selectAll.addEventListener('click',function(){
+            // 将全选复选框的选中状态保存在status中
+            let status=this.checked
+            // 遍历获取到的input
+            for(let i=0;i<inputList.length;i++){
+                // 为每个单元格的复选框的checked的属性赋值
+                inputList[i].checked=status
+                console.log(inputList[i])
+            }
+        })
+        for(let i=0;i<inputList.length;i++){
+            inputList[i].addEventListener('click',function(){
+                let flag=true
+                for(let j=0;j<inputList.length;j++){
+                    if(!inputList[j].checked){
+                        flag=false
+                        break
+                    }
+                }
+                selectAll.checked=flag
+            })
+        }
 
         //批量删除提交
-             function delAll () {
-                layer.confirm('确认要删除吗？',function(index){
-                    //捉到所有被选中的，发异步进行删除
-                    layer.msg('删除成功', {icon: 1});
+        function delKissAll () {
+            layer.confirm('确认要删除吗？',function(index){
+                //捉到所有被选中的，发异步进行删除
+                let checked=document.querySelectorAll("tbody tr td input");
+                let kissids=[];
+                console.info(checked[0]);
+                for (let i = 0; i < checked.length; i++) {
+                    if (checked[i].checked){
+                        kissids.push(checked[i].value);
+                        console.log(checked[i].value);
+                        $(checked[i]).parents("tr").remove();
+                    }
+                    console.log(kissids);
+                }
+                if (kissids.length<=0){
+                    layer.msg("请至少选择一个");
+                    return;
+                }
+
+                $.ajax({
+                    url: "/user/delSelUserKiss",
+                    type: "get",
+                    contentType: 'application/json',
+                    isAysn: false,
+                    data: {kissids : kissids.toString()},
+                    success: function () {
+                        // location.reload();
+                    }
                 });
-             }
+                layer.msg('删除成功', {icon: 1});
+            });
+        }
             // 等级-增加
-            function kiss_add (title,url,id,w,h) {
-                x_admin_show(title,url,w,h); 
+            function kiss_add (title,url,id,username,intergal,w,h) {
+                x_admin_show(title,url,id,username,intergal,w,h);
             }
             // 等级-编辑
-            function kiss_edit (title,url,id,w,h) {
-                x_admin_show(title,url,w,h); 
-            }
-           
-            /*等级-删除*/
-            function kiss_del(obj,id){
-                layer.confirm('确认要删除吗？',function(index){
-                    //发异步删除数据
-                    $(obj).parents("tr").remove();
-                    layer.msg('已删除!',{icon:1,time:1000});
-                });
+            function kiss_edit (title,url,id,username,intergal,w,h) {
+                x_adminshow(title,url,id,username,intergal,w,h);
             }
         </script>
         <script>

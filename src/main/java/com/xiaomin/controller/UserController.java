@@ -16,12 +16,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-/**
- * @Author: XiaoMin
- * @PRODUCT_NAME: IntelliJ IDEA
- * @PROJECT_NAME: UserManagement
- * @Date_Time: 2022/5/29 14:07
- */
 @Controller
 public class UserController {
 
@@ -41,17 +35,14 @@ public class UserController {
         return allUser;
     }
 
-
     @RequestMapping("/list")
     public String list(Model model){
-
         Collection<User> users = userService.getAllUser();
         model.addAttribute("users",users);
         return "X-Admin/member-list";
     }
     @RequestMapping("/vip-list")
     public String vipList(Model model){
-
         Collection<User> users = userService.getAllUser();
         model.addAttribute("users",users);
         return "X-Admin/member-vip-list";
@@ -105,16 +96,9 @@ public class UserController {
         return "main";
     }
 
-
-
-
     @RequestMapping("/level")
     public String toLevelPage(){
         return "X-Admin/member-level";
-    }
-    @RequestMapping("/kiss")
-    public String toKissPage(){
-        return "X-Admin/member-kiss";
     }
 
     /**

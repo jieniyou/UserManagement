@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="小敏_MYSQL" uuid="f499c990-1637-425a-8ae8-7f14eae1c3f7">
+    <data-source source="LOCAL" name="xc" uuid="f499c990-1637-425a-8ae8-7f14eae1c3f7">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/xunfang_2_db</jdbc-url>
+      <jdbc-url>jdbc:mysql://localhost:3306/xc</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

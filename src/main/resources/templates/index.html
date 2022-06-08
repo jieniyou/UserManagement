@@ -45,7 +45,7 @@
                 <div class=" textright"><a href="" class="forget">忘记密码？</a></div>
                 <div class="tishi"></div>
                 <div class="form-group">
-                    <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"/>
+                    <p style="color: #ff0000" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"/>
                     <input type="submit" class="btn btn-danger btn-block btn-login" value="登录"/>
                 </div>
                 <div class=" textright"><a th:href="@{/user/register}" class="forget">立即注册</a></div>
