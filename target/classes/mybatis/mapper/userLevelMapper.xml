@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaomin.mapper.UserLevelMapper">
+    <resultMap id="userLevel" type="com.xiaomin.pojo.UserLevel"/>
+    <parameterMap id="userLevel" type="com.xiaomin.pojo.UserLevel"/>
+    <select id="getAllUserLevels" resultMap="userLevel">
+        select * from user_level_tb;
+    </select>
+    <select id="getUserLevelById" resultMap="userLevel">
+        select * from user_level_tb
+        <where>
+            id=#{id}
+        </where>
+    </select>
+    <insert id="addUserLevel" parameterType="userLevel">
+        insert into user_level_tb (id, levelName, dateModified)
+        values (#{id}, #{levelName}, #{dateModified});
+    </insert>
+    <update id="updateUserLevel" parameterType="userLevel">
+        update user_level_tb
+        set levelName=ifnull(#{levelName},levelName),
+            dateModified=ifnull(#{dateModified},dateModified)
+        where id=#{id}
+    </update>
+    <delete id="deleteUserLevelById" parameterType="userLevel">
+        delete from user_level_tb where id=#{id};
+    </delete>
+</mapper>
