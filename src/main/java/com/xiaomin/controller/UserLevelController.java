@@ -36,9 +36,9 @@ public class UserLevelController {
             userLevel.setDateModified(new Date());
             userLevelService.addUserLevel(userLevel);
             System.out.println("userLevel===>"+userLevel);
-            return userLevel.toString();
+            return "<center style='color:green'>添加用户积分成功,点击右上角关闭</center>";
         }catch (Exception e){
-            return "已存在用户的积分&ensp;请点击右上角关闭";
+            return "<center style='color:red'>已存在用户的积分或不存在该用户&ensp;请点击右上角关闭</center>";
         }
 
     }

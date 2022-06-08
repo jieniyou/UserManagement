@@ -16,7 +16,10 @@ public class KissServiceImpl implements KissService {
     public Collection<UserKiss> getAllUserKiss() {
         return kissMapper.getAllUserkiss();
     }
-
+    @Override
+    public void addUserkiss(UserKiss userKiss) {
+        kissMapper.addUserkiss(userKiss);
+    }
     @Override
     public void deleteUserKissById(Integer id) {
         kissMapper.deleteUserKissById(id);

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Collection;
 
@@ -22,6 +23,18 @@ public class KissController {
         model.addAttribute("userkisss",allUserKiss);
         allUserKiss.forEach(x-> System.out.println("allUserKiss===>"+x));
         return "X-Admin/member-kiss";
+    }
+    @RequestMapping("/userkiss/add")
+    @ResponseBody
+    public String toAdd(UserKiss userKiss){
+        try {
+            kissService.addUserkiss(userKiss);
+            System.out.println(userKiss);
+            return "<center style='color:green'>添加成功,点击右上角关闭</center>";
+        }catch (Exception e){
+            return "<center style='color:red'>添加失败,用户ID已在列表或不存在该用户,点击右上角关闭</center>";
+        }
+
     }
     @RequestMapping("/user/delSelUserKiss")
     public String deleteUserKissById(String kissids){

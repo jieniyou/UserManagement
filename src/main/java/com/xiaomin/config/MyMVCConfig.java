@@ -28,6 +28,7 @@ public class MyMVCConfig implements WebMvcConfigurer {
         registry.addViewController("/level_add").setViewName("X-Admin/level-add");
 
         registry.addViewController("/kiss_edit").setViewName("X-Admin/kiss-edit");
+        registry.addViewController("/kiss_add").setViewName("X-Admin/kiss-add");
 
 
 

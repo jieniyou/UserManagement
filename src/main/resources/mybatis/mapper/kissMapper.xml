@@ -8,6 +8,11 @@
         select  * from intergal_tb
     </select>
 
+    <insert id="addUserkiss" parameterType="User" keyProperty="id" useGeneratedKeys="true">
+        insert into intergal_tb (id,userName,intergal)
+        values (#{id},#{userName}, #{intergal});
+    </insert>
+
     <update id="updateUserkiss" parameterType="userkiss">
         update intergal_tb
         set userName = ifnull(#{userName},userName),

@@ -10,7 +10,7 @@ import java.util.Collection;
 @Repository
 public interface KissMapper {
      Collection<UserKiss> getAllUserkiss() ;
-
+    void addUserkiss(UserKiss userKiss);
     void deleteUserKissById(Integer id);
     void updateUserkiss(UserKiss userKiss);
 }
