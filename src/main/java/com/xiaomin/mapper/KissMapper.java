@@ -1,6 +1,5 @@
 package com.xiaomin.mapper;
 
-import com.xiaomin.pojo.User;
 import com.xiaomin.pojo.UserKiss;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;

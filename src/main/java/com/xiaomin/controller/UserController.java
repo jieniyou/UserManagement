@@ -16,6 +16,12 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * @Author: XiaoMin
+ * @PRODUCT_NAME: IntelliJ IDEA
+ * @PROJECT_NAME: UserManagement
+ * @Date_Time: 2022/5/29 14:07
+ */
 @Controller
 public class UserController {
 
@@ -35,14 +41,17 @@ public class UserController {
         return allUser;
     }
 
+
     @RequestMapping("/list")
     public String list(Model model){
+
         Collection<User> users = userService.getAllUser();
         model.addAttribute("users",users);
         return "X-Admin/member-list";
     }
     @RequestMapping("/vip-list")
     public String vipList(Model model){
+
         Collection<User> users = userService.getAllUser();
         model.addAttribute("users",users);
         return "X-Admin/member-vip-list";
@@ -61,9 +70,10 @@ public class UserController {
     }
 
     @RequestMapping("/user/add")
+    @ResponseBody
     public String toAdd(User user){
         userService.addUser(user);
-        return "main";
+        return "添加成功";
     }
     @RequestMapping("/user/edit")
     public String toEdit(User user){
@@ -72,10 +82,11 @@ public class UserController {
         return "main";
     }
     @RequestMapping("/user/del")
+    @ResponseBody
     public String toDel(Integer id){
         System.out.println("执行删除方法,删除===>"+id);
         userService.deleteUserById(id);
-        return "main";
+        return "删除成功";
     }
     @RequestMapping("/user/delSelector")
     public String toDelSelector(String ids){
@@ -94,11 +105,6 @@ public class UserController {
         System.out.println("============>"+username);
         model.addAttribute("getUserById",user);
         return "main";
-    }
-
-    @RequestMapping("/level")
-    public String toLevelPage(){
-        return "X-Admin/member-level";
     }
 
     /**

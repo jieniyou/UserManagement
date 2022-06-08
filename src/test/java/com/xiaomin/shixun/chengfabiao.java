@@ -1,6 +1,7 @@
 package com.xiaomin.shixun;
 
 import java.util.Arrays;
+import java.util.Collection;
 
 /**
  * @Author: XiaoMin

@@ -18,6 +18,7 @@
     </insert>
 
     <update id="updateUser" parameterType="User">
+        # ifnull()防止传入空值影影响数据
         update user_tb
         set userName = ifnull(#{userName},userName),
             password = ifnull(#{password},password),

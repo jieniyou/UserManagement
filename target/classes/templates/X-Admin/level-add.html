@@ -15,29 +15,44 @@
 
 </head>
 <body>
-    <form class="layui-form">
+    <form class="layui-form" th:action="@{/levelAdd}">
+        <!--用户ID-->
         <div class="layui-form-item">
-            <label for="level-name" class="layui-form-label">
-                <span class="x-red">*</span>等级名
+            <label for="level-id" class="layui-form-label">
+                <span class="x-red">*</span>用户ID
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="level-name" name="level-name" required="" lay-verify="required"
+                <input type="text" id="level-id" name="id" required="" lay-verify="required"
                 autocomplete="off"  class="layui-input">
             </div>
         </div>
+        <!--等级-->
         <div class="layui-form-item">
-            <label for="level-kiss" class="layui-form-label">
-                <span class="x-red">*</span>积分
+            <label for="level-name" class="layui-form-label">
+                <span class="x-red">*</span>等级
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="level-kiss" name="level-kiss" required=""  lay-verify="required"
-                autocomplete="off" class="layui-input">
+                <td class="layui-form">
+                    <select id="level-name" name="levelName" class="layui-form-select">
+                        <option disabled>---请选择---</option>
+                        <option value="青铜">青铜</option>
+                        <option value="白银">白银</option>
+                        <option value="黄金">黄金</option>
+                        <option value="铂金">铂金</option>
+                        <option value="钻石">钻石</option>
+                        <option value="王者">王者</option>
+                        <option value="传奇">传奇</option>
+                        <option value="荣耀">荣耀</option>
+                        <option value="百星">百星</option>
+                    </select>
+                </td>
             </div>
         </div>
+
         <div class="layui-form-item">
             <label for="L_repass" class="layui-form-label">
             </label>
-            <button  class="layui-btn" lay-filter="save" lay-submit="">
+            <button id="L_repass" class="layui-btn" lay-filter="save" onclick="setTimeout('x_admin_close()',1500);" lay-submit="">
                 保存
             </button>
         </div>

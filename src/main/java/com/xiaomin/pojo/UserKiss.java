@@ -3,6 +3,7 @@ package com.xiaomin.pojo;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.ibatis.type.Alias;
+
 @Data
 @NoArgsConstructor
 @Alias("userkiss")

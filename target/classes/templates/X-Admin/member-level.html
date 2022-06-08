@@ -44,27 +44,23 @@
                         <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
                     </div>
                   </div>
-                </div>
+                </div> 
             </form>
-            <xblock>
-                <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon">&#xe640;</i>批量删除</button>
-                <button class="layui-btn" onclick="level_add('添加用户','level-add.html','','600','300')"><i class="layui-icon">&#xe608;</i>添加</button>
-                <span class="x-right" style="line-height:40px">共有数据：88 条</span>
-            </xblock>
+            <xblock><button class="layui-btn" onclick="level_add('添加用户','/level_add','','600','300')"><i class="layui-icon">&#xe608;</i>添加</button></xblock>
             <table class="layui-table">
                 <thead>
                     <tr>
                         <th>
-                            <input type="checkbox" name="" value="">
-                        </th>
-                        <th>
                             ID
                         </th>
                         <th>
-                            等级名
+                            等级
                         </th>
                         <th>
-                            积分范围
+                            修改日期
+                        </th>
+                        <th>
+                            修改等级
                         </th>
                         <th>
                             操作
@@ -72,25 +68,32 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>
-                            <input type="checkbox" value="1" id="selectAll">
-                        </td>
-                        <td>
-                            1
-                        </td>
-                        <td>
-                            新手
-                        </td>
-                        <td >
-                            0-1000
-                        </td>
+                    <tr th:each="level:${allLevels}">
+                        <td th:text="${level.id}"></td>
+                        <td th:text="${level.levelName}"></td>
+
+                        <td th:text="${#dates.format(level.dateModified,'yyyy-MM-dd')}"></td>
+                            <td class="layui-form">
+                                <select name="levelName" class="layui-form-select">
+                                    <option disabled>---请选择---</option>
+                                    <option value="青铜">青铜</option>
+                                    <option value="白银">白银</option>
+                                    <option value="黄金">黄金</option>
+                                    <option value="铂金">铂金</option>
+                                    <option value="钻石">钻石</option>
+                                    <option value="王者">王者</option>
+                                    <option value="传奇">传奇</option>
+                                    <option value="荣耀">荣耀</option>
+                                    <option value="百星">百星</option>
+                                </select>
+                            </td>
+
                         <td class="td-manage">
-                            <a title="编辑" href="javascript:;" onclick="level_edit('编辑','level-edit.html','4','','300')"
+                            <a title="确认" href="javascript:;" th:onclick="level_edit(this,'[[${level.id}]]')"
                             style="text-decoration:none">
-                                <i class="layui-icon">&#xe642;</i>
+                                <i class="layui-icon">&#xe605;</i>
                             </a>
-                            <a title="删除" href="javascript:;" onclick="level_del(this,'1')"
+                            <a title="删除" href="javascript:;" th:onclick="level_del(this,'[[${level.id}]]')"
                             style="text-decoration:none">
                                 <i class="layui-icon">&#xe640;</i>
                             </a>
@@ -120,9 +123,9 @@
 
           //以上模块根据需要引入
           //
+          
 
-
-
+          
           var start = {
             min: laydate.now()
             ,max: '2099-06-16 23:59:59'
@@ -132,7 +135,7 @@
               end.start = datas //将结束日的初始值设定为开始日
             }
           };
-
+          
           var end = {
             min: laydate.now()
             ,max: '2099-06-16 23:59:59'
@@ -141,7 +144,7 @@
               start.max = datas; //结束日选好后，重置开始日的最大日期
             }
           };
-
+          
           document.getElementById('LAY_demorange_s').onclick = function(){
             start.elem = this;
             laydate(start);
@@ -150,80 +153,61 @@
             end.elem = this
             laydate(end);
           }
-
+          
         });
 
-        //全选
-        let inputList=document.querySelectorAll('table tr td input')
-        // 为全选绑定点击事件
-        selectAll.addEventListener('click',function(){
-            // 将全选复选框的选中状态保存在status中
-            let status=this.checked
-            // 遍历获取到的input
-            for(let i=0;i<inputList.length;i++){
-                // 为每个单元格的复选框的checked的属性赋值
-                inputList[i].checked=status
-            }
-        })
-        for(let i=0;i<inputList.length;i++){
-            inputList[i].addEventListener('click',function(){
-                let flag=true
-                for(let j=0;j<inputList.length;j++){
-                    if(!inputList[j].checked){
-                        flag=false
-                        break
-                    }
-                }
-                selectAll.checked=flag
-            })
-        }
         //批量删除提交
-        function delAll () {
-            layer.confirm('确认要删除吗？',function(index){
-                //捉到所有被选中的，发异步进行删除
-                let checked=document.querySelectorAll("table tbody input");
-                let ids=[];
-
-                for (let i = 0; i < checked.length; i++) {
-                    if (checked[i].checked){
-                        ids.push(checked[i].value);
-                        console.log(checked[i].value);
-                        $(checked[i]).parents("tr").remove();
-                    }
-                    console.log(ids);
-                }
-                if (ids.length<=0){
-                    layer.msg("请至少选择一个");
-                    return;
-                }
-
-                $.ajax({
-                    url: "/user/delSelector",
-                    type: "get",
-                    contentType: 'application/json',
-                    isAysn: false,
-                    data: {ids : ids.toString()},
-                    success: function () {
-                        // location.reload();
-                    }
+             function delAll () {
+                layer.confirm('确认要删除吗？',function(index){
+                    //捉到所有被选中的，发异步进行删除
+                    layer.msg('删除成功', {icon: 1});
                 });
-                layer.msg('删除成功', {icon: 1});
-
-            });
-        }
+             }
             // 等级-增加
             function level_add (title,url,id,w,h) {
-                x_admin_show(title,url,w,h);
+                x_admin_show(title,url,w,h); 
             }
             // 等级-编辑
-            function level_edit (title,url,id,w,h) {
-                x_admin_show(title,url,w,h);
-            }
+            function level_edit (obj,id) {
+                let options=$(obj).parent().parent().find("td").eq(3);
+                let levelName=options.find("option:selected").val();
 
+                let date=new Date();
+
+                let year=date.getFullYear();
+                let month=date.getMonth()+1;
+                let date1=date.getDate();
+                month=month<9?'0'+month:month;
+                date1=date1<9?'0'+date1:date1;
+                let dateModified=year+"-"+month+"-"+date1;
+
+                layer.confirm('确认要修改吗？',function(index){
+                    $.ajax({
+                        url: "/levelUpdate",
+                        isAysn: false,
+                        type: 'get',
+                        contentType: 'application/json',
+                        data: {id,levelName}
+                    });
+                    let option=$(obj).parent().parent().find("td").eq(1);
+                    let newDate=$(obj).parent().parent().find("td").eq(2);
+                    option.text(levelName);
+                    newDate.text(dateModified);
+                    layer.msg('已修改!',{icon:1,time:1000});
+                });
+            }
+           
             /*等级-删除*/
             function level_del(obj,id){
                 layer.confirm('确认要删除吗？',function(index){
                     //发异步删除数据
+                    $.ajax({
+                        url: "/levelDelete",
+                        isAysn: false,
+                        type: 'get',
+                        contentType: 'application/json',
+                        data: {id}
+                    });
                     $(obj).parents("tr").remove();
                     layer.msg('已删除!',{icon:1,time:1000});
                 });
@@ -235,7 +219,7 @@
         (function() {
           var hm = document.createElement("script");
           hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
-          var s = document.getElementsByTagName("script")[0];
+          var s = document.getElementsByTagName("script")[0]; 
           s.parentNode.insertBefore(hm, s);
         })();
         </script>
