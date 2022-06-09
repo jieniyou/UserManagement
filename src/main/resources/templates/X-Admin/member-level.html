@@ -179,8 +179,8 @@
                 let year=date.getFullYear();
                 let month=date.getMonth()+1;
                 let date1=date.getDate();
-                month=month<9?'0'+month:month;
-                date1=date1<9?'0'+date1:date1;
+                month=month<=9?'0'+month:month;
+                date1=date1<=9?'0'+date1:date1;
                 let dateModified=year+"-"+month+"-"+date1;
 
                 layer.confirm('确认要修改吗？',function(index){

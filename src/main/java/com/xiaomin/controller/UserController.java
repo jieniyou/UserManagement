@@ -74,6 +74,7 @@ public class UserController {
     @ResponseBody
     public String toAdd(User user){
         userService.addUser(user);
+        System.out.println("userAdd===>"+user);
         return "<center style='" +
                 "font-size:32px;" +
                 "color:green;" +
