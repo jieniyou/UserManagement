@@ -30,9 +30,21 @@ public class KissController {
         try {
             kissService.addUserkiss(userKiss);
             System.out.println(userKiss);
-            return "<center style='color:green'>添加成功,点击右上角关闭</center>";
+            return "<center style='" +
+                    "font-size:32px;" +
+                    "color:green;" +
+                    "margin-top: 25%;margin-left:30%;" +
+                    "border:5px green solid;" +
+                    "width:35%;" +
+                    "border-radius:25px;'>添加成功,点击右上角关闭</center>";
         }catch (Exception e){
-            return "<center style='color:red'>添加失败,用户ID已在列表或不存在该用户,点击右上角关闭</center>";
+            return "<center style='" +
+                    "font-size:24px;" +
+                    "color:red;" +
+                    "margin-top: 12%;margin-left:17%;" +
+                    "border:5px red solid;" +
+                    "width:67%;" +
+                    "border-radius:25px;'>添加失败,用户ID已在列表或不存在该用户,点击右上角关闭</center>";
         }
 
     }

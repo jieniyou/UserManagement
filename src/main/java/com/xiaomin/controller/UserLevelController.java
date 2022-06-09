@@ -36,9 +36,21 @@ public class UserLevelController {
             userLevel.setDateModified(new Date());
             userLevelService.addUserLevel(userLevel);
             System.out.println("userLevel===>"+userLevel);
-            return "<center style='color:green'>添加用户积分成功,点击右上角关闭</center>";
+            return "<center style='" +
+                    "font-size:32px;" +
+                    "color:green;" +
+                    "margin-top: 12%;margin-left:4%;" +
+                    "border:5px green solid;" +
+                    "width:90%;" +
+                    "border-radius:25px;'>添加用户积分成功,点击右上角关闭</center>";
         }catch (Exception e){
-            return "<center style='color:red'>已存在用户的积分或不存在该用户&ensp;请点击右上角关闭</center>";
+            return "<center style='" +
+                    "font-size:24px;" +
+                    "color:red;" +
+                    "margin-top: 12%;margin-left:17%;" +
+                    "border:5px red solid;" +
+                    "width:67%;" +
+                    "border-radius:25px;'>已存在用户的积分或不存在该用户&ensp;请点击右上角关闭</center>";
         }
 
     }
