@@ -73,7 +73,13 @@ public class UserController {
     @ResponseBody
     public String toAdd(User user){
         userService.addUser(user);
-        return "添加成功";
+        return "<center style='" +
+                "font-size:32px;" +
+                "color:green;" +
+                "margin-top: 30%;margin-left:30%;" +
+                "border:5px green solid;" +
+                "width:30%;" +
+                "border-radius:25px;'>添加成功,请关闭本页面</center>";
     }
     @RequestMapping("/user/edit")
     public String toEdit(User user){
