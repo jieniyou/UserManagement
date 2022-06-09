@@ -131,7 +131,8 @@
 
 <!-- 右侧内容框架,更改从这里开始 -->
 <form class="layui-form xbs" method="post" action="" target="_self" th:fragment="R_search">
-    <div class="layui-form-pane" style="text-align: center;">
+
+    <div class="layui-form-pane" style="text-align: center;display: none" >
         <div class="layui-form-item" style="display: inline-block;">
             <label class="layui-form-label xbs768">日期范围</label>
             <div class="layui-input-inline xbs768">
@@ -148,6 +149,7 @@
             </div>
         </div>
     </div>
+
 </form>
 <xblock th:fragment="xblockAdd">
     <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon">&#xe640;</i>批量删除</button>

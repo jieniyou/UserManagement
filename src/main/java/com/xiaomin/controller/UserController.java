@@ -63,10 +63,11 @@ public class UserController {
         return "registered";
     }
     @RequestMapping("/register")
-    public String ToRegister(User user){
+    public String ToRegister(User user,Model model){
         System.out.println("===>"+user.toString());
         userService.addUser(user);
-        return "redirect:/index.html";
+        model.addAttribute("msg","注册成功,请联系XiaoMin授权进行登录");
+        return "index";
     }
 
     @RequestMapping("/user/add")
